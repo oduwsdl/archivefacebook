@@ -1,0 +1,36 @@
+
+overlay	chrome://browser/content/browser.xul	chrome://archivefb/content/overlay.xul
+content	archivefb	jar:chrome/archivefb.jar!/content/archivefb/
+content	archivefb	jar:chrome/archivefb.jar!/content/archivefb/	contentaccessible=yes
+
+skin	archivefb	classic/1.0	jar:chrome/archivefb.jar!/skin/classic/archivefb/
+style	chrome://browser/content/browser.xul	chrome://archivefb/skin/overlay.css
+style	chrome://global/content/customizeToolbar.xul	chrome://archivefb/skin/overlay.css
+
+locale	archivefb	en-US	jar:chrome/archivefb.jar!/locale/en-US/archivefb/
+locale	archivefb	ja-JP	jar:chrome/archivefb.jar!/locale/ja-JP/archivefb/
+locale	archivefb	zh-TW	jar:chrome/archivefb.jar!/locale/zh-TW/archivefb/
+locale	archivefb	it-IT	jar:chrome/archivefb.jar!/locale/it-IT/archivefb/
+locale	archivefb	de-DE	jar:chrome/archivefb.jar!/locale/de-DE/archivefb/
+locale	archivefb	es-ES	jar:chrome/archivefb.jar!/locale/es-ES/archivefb/
+locale	archivefb	fr-FR	jar:chrome/archivefb.jar!/locale/fr-FR/archivefb/
+locale	archivefb	zh-CN	jar:chrome/archivefb.jar!/locale/zh-CN/archivefb/
+locale	archivefb	sv-SE	jar:chrome/archivefb.jar!/locale/sv-SE/archivefb/
+locale	archivefb	fi-FI	jar:chrome/archivefb.jar!/locale/fi-FI/archivefb/
+locale	archivefb	cs-CZ	jar:chrome/archivefb.jar!/locale/cs-CZ/archivefb/
+locale	archivefb	ru-RU	jar:chrome/archivefb.jar!/locale/ru-RU/archivefb/
+locale	archivefb	ga-IE	jar:chrome/archivefb.jar!/locale/ga-IE/archivefb/
+locale	archivefb	nl-NL	jar:chrome/archivefb.jar!/locale/nl-NL/archivefb/
+locale	archivefb	pl-PL	jar:chrome/archivefb.jar!/locale/pl-PL/archivefb/
+locale	archivefb	ca-AD	jar:chrome/archivefb.jar!/locale/ca-AD/archivefb/
+locale	archivefb	pt-BR	jar:chrome/archivefb.jar!/locale/pt-BR/archivefb/
+locale	archivefb	ko-KR	jar:chrome/archivefb.jar!/locale/ko-KR/archivefb/
+locale	archivefb	hu-HU	jar:chrome/archivefb.jar!/locale/hu-HU/archivefb/
+locale	archivefb	hr-HR	jar:chrome/archivefb.jar!/locale/hr-HR/archivefb/
+locale	archivefb	sk-SK	jar:chrome/archivefb.jar!/locale/sk-SK/archivefb/
+locale	archivefb	ar	jar:chrome/archivefb.jar!/locale/ar/archivefb/
+locale	archivefb	gl-ES	jar:chrome/archivefb.jar!/locale/gl-ES/archivefb/
+locale	archivefb	uk-UA	jar:chrome/archivefb.jar!/locale/uk-UA/archivefb/
+locale	archivefb	tr-TR	jar:chrome/archivefb.jar!/locale/tr-TR/archivefb/
+locale	archivefb	ro-RO	jar:chrome/archivefb.jar!/locale/ro-RO/archivefb/
+
