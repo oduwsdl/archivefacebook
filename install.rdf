@@ -9,7 +9,7 @@
 		<em:name>ArchiveFacebook</em:name>
 		<em:version>1.1</em:version>
 		<em:description>Archive your Facebook account!</em:description>
-		<em:creator>Carlton Northern</em:creator>
+		<em:creator>Mat Kelly</em:creator>
 		<em:translator>趙柏強 (zh-TW)</em:translator>
 		<em:translator>MatrixIsAllOver (it-IT)</em:translator>
 		<em:translator>WowTIP (sv-SE)</em:translator>
@@ -39,12 +39,12 @@
 		<em:contributor>Michael Brüggemann</em:contributor>
 		<em:iconURL>chrome://archivefb/skin/main_32.png</em:iconURL>
 		<em:optionsURL>chrome://archivefb/content/prefs.xul</em:optionsURL>
-		<em:homepageURL>http://amb.vis.ne.jp/mozilla/archivefb/</em:homepageURL>
+		<em:homepageURL>http://code.google.com/p/archivefacebook/</em:homepageURL>
 		<em:targetApplication>
 			<Description>
 				<em:id>{ec8030f7-c20a-464f-9b0e-13a3a9e97384}</em:id>
-				<em:minVersion>3.5</em:minVersion>
-				<em:maxVersion>3.5.*</em:maxVersion>
+				<em:minVersion>3.6</em:minVersion>
+				<em:maxVersion>4.0.*</em:maxVersion>
 			</Description>
 		</em:targetApplication>
 	</Description>
