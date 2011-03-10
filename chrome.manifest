@@ -34,3 +34,4 @@ locale	archivefb	uk-UA	jar:chrome/archivefb.jar!/locale/uk-UA/archivefb/
 locale	archivefb	tr-TR	jar:chrome/archivefb.jar!/locale/tr-TR/archivefb/
 locale	archivefb	ro-RO	jar:chrome/archivefb.jar!/locale/ro-RO/archivefb/
 
+resource	archivefb-modules	modules/
