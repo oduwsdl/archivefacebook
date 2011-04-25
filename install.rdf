@@ -7,9 +7,9 @@
 		<em:id>{53A03D43-5363-4669-8190-99061B2DEBA6}</em:id>
 		<em:type>2</em:type>
 		<em:name>ArchiveFacebook</em:name>
-		<em:version>1.3a7</em:version>
+		<em:version>1.3a8</em:version>
 		<em:description>Archive your Facebook account!</em:description>
-		<em:creator>Carlton Northern</em:creator>
+		<em:creator>Mat Kelly</em:creator>
 		<em:translator>趙柏強 (zh-TW)</em:translator>
 		<em:translator>MatrixIsAllOver (it-IT)</em:translator>
 		<em:translator>WowTIP (sv-SE)</em:translator>
@@ -38,7 +38,7 @@
 		<em:contributor>Joe Antao</em:contributor>
 		<em:contributor>Michael Brüggemann</em:contributor>
 		<em:contributor>Hany SalahEldeen</em:contributor>
-		<em:contributor>Mat Kelly</em:contributor>
+		<em:contributor>Carlton Northern</em:contributor>
 		<em:iconURL>chrome://archivefb/skin/main_32.png</em:iconURL>
 		<em:optionsURL>chrome://archivefb/content/prefs.xul</em:optionsURL>
 		<em:homepageURL>http://code.google.com/p/archivefacebook/</em:homepageURL>
