@@ -5,9 +5,10 @@
 
 	<Description about="urn:mozilla:install-manifest">
 		<em:id>{53A03D43-5363-4669-8190-99061B2DEBA6}</em:id>
+		<em:unpack>true</em:unpack>
 		<em:type>2</em:type>
 		<em:name>ArchiveFacebook</em:name>
-		<em:version>1.3a9</em:version>
+		<em:version>1.3a10</em:version>
 		<em:description>Archive your Facebook account!</em:description>
 		<em:creator>Mat Kelly</em:creator>
 		<em:translator>趙柏強 (zh-TW)</em:translator>
