@@ -4,7 +4,7 @@ const Ci = Components.interfaces;
 
 const archivefbUtils = {
 
-	get namespace() { return "http://amb.vis.ne.jp/mozilla/archivefb-rdf#"; },
+	get namespace() { return "http://cs.odu.edu/~mkelly/archivefb/archivefb-rdf#"; },
 
 
 	getarchivefbDir: function ARCHIVEFBU_getarchivefbDir() {
@@ -198,6 +198,7 @@ const archivefbUtils = {
 		try {
 			aFile.create(aFile.NORMAL_FILE_TYPE, 0666);
 			this.UNICODE.charset = aChars;
+			
 			aContent = this.UNICODE.ConvertFromUnicode(aContent);
 			var ostream = Cc["@mozilla.org/network/file-output-stream;1"].
 			              createInstance(Ci.nsIFileOutputStream);
