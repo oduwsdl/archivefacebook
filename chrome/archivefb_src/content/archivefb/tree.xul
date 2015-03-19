@@ -1,0 +1,114 @@
+<?xml version="1.0" ?>
+
+<?xml-stylesheet href="chrome://browser/skin/places/places.css" type="text/css"?>
+
+<!DOCTYPE overlay SYSTEM "chrome://archivefb/locale/tree.dtd">
+
+<overlay id="archivefbTreeOverlay"
+         xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
+
+	<script type="application/x-javascript" src="chrome://archivefb/content/common.js" />
+	<script type="application/x-javascript" src="chrome://archivefb/content/archivefb.js" />
+	<script type="application/x-javascript" src="chrome://archivefb/content/tree.js" />
+	<script type="application/x-javascript" src="chrome://archivefb/content/mbService.js" />
+
+	<popupset id="archivefbPopupSet">
+		<menupopup id="archivefbPopup" onpopupshowing="archivefbController.onPopupShowing(event);"
+		           onmouseover="if (event.originalTarget.getAttribute('nodelay')) document.getElementById('archivefbPopupToolsMenu').hidePopup();">
+			<menuitem id="archivefbPopupOpen"       label="&archivefb.open;"        nodelay="true" oncommand="archivefbController.open(null,false);" default="true" />
+			<menuitem id="archivefbPopupOpenTab"    label="&archivefb.open.tab;"    nodelay="true" oncommand="archivefbController.open(null,true);" hidden="true" />
+			<menuitem id="archivefbPopupOpenNewTab" label="&archivefb.open.newtab;" nodelay="true" oncommand="archivefbController.open(null,true);" />
+			<menuitem id="archivefbPopupOpenSource" label="&archivefb.open.source;" nodelay="true" oncommand="archivefbController.forward(null,'S');"
+			          onclick="if (event.button != 1) return; this.parentNode.hidePopup(); archivefbController.forward(null,'S',true);" />
+			<menuitem id="archivefbPopupCombinedView" label="&archivefb.folder.combine;" oncommand="archivefbController.forward(null,'C');"   hidden="true" />
+			<menuitem id="archivefbPopupOpenAllItems" label="&archivefb.folder.openall;" oncommand="archivefbController.openAllInTabs(null);" hidden="true" />
+			<menuseparator hidden="true" />
+			<menu id="archivefbPopupTools" label="&archivefb.tools;" onmouseover="event.stopPropagation();">
+				<menupopup id="archivefbPopupToolsMenu">
+					<menuitem id="archivefbPopupShowFiles" label="&archivefb.show.files;" oncommand="archivefbController.forward(null,'L');" />
+					<menuitem id="archivefbPopupSend"      label="&archivefb.move;..."    oncommand="archivefbTreeUI.send()" />
+					<menuseparator />
+					<menuitem id="archivefbPopupRenew" class="menuitem-iconic" label="&archivefb.renew;..." oncommand="archivefbController.renew(null, true);" onclick="if (event.button == 1) archivefbController.renew(null, false);" />
+					<menuseparator />
+					<menuitem id="archivefbPopupExport" label="&archivefb.export;" oncommand="archivefbController.forward(null,'E');" />
+				</menupopup>
+			</menu>
+			<menuitem id="archivefbPopupManage" label="&archivefb.folder.manage;..." oncommand="archivefbController.forward(null,'M');" hidden="true" />
+			<menuitem id="archivefbPopupSort"   label="&archivefb.sort.folder;..."   oncommand="archivefbController.forward(null,'Z');" hidden="true" />
+			<menuseparator />
+			<menuitem id="archivefbPopupNewFolder"    class="menuitem-iconic archivefb-create" label="&archivefb.new.folder;..." oncommand="archivefbMainUI.createFolder();" />
+			<menuitem id="archivefbPopupNewSeparator" class="menuitem-iconic archivefb-create" label="&archivefb.new.separator;" oncommand="archivefbMainUI.createSeparator();" />
+			<menuitem id="archivefbPopupNewNote"      class="menuitem-iconic archivefb-create" label="&archivefb.new.note;"      oncommand="archivefbMainUI.createNote();" />
+			<menuseparator />
+			<menuitem id="archivefbPopupRemove"    class="menuitem-iconic" label="&archivefb.remove;"   oncommand="archivefbTreeUI.remove();" />
+			<menuseparator />
+			<menuitem id="archivefbPopupProperty"  class="menuitem-iconic" label="&archivefb.property;" oncommand="archivefbController.forward(null,'P');" />
+		</menupopup>
+		<menupopup id="archivefbSearchPopup" onpopupshowing="archivefbSearchUI.onPopupShowing(event);" position="after_start">
+			<menuitem label="&archivefb.search.fulltext;" type="radio" searchtype="fulltext" oncommand="archivefbSearchUI.changeType('fulltext');" />
+			<menuseparator />
+			<menuitem label="&archivefb.prop.title;"   type="radio" searchtype="title"   oncommand="archivefbSearchUI.changeType('title');" />
+			<menuitem label="&archivefb.prop.comment;" type="radio" searchtype="comment" oncommand="archivefbSearchUI.changeType('comment');" />
+			<menuitem label="URL"               type="radio" searchtype="source"  oncommand="archivefbSearchUI.changeType('source');" />
+			<menuitem label="&archivefb.prop.id.date;" type="radio" searchtype="id"      oncommand="archivefbSearchUI.changeType('id');" />
+			<menuitem label="&archivefb.search.all;"   type="radio" searchtype="all"     oncommand="archivefbSearchUI.changeType('all');" />
+			<menuseparator />
+			<menuitem id="archivefbSearchPopupOptionRE" label="&archivefb.search.re;" type="checkbox" persist="checked" />
+			<menuitem id="archivefbSearchPopupOptionCS" label="&archivefb.search.cs;" type="checkbox" persist="checked" />
+			<menuseparator />
+			<menu label="&archivefb.tools;">
+				<menupopup>
+					<menuitem label="&archivefb.search.days;..." oncommand="archivefbSearchUI.promptForDaysFilter();" />
+					<menuitem label="&archivefb.search.cache;"   oncommand="archivefbSearchUI.updateCache();" />
+				</menupopup>
+			</menu>
+		</menupopup>
+	</popupset>
+
+	<toolbar id="archivefbSearchToolbar" align="center">
+		<textbox id="archivefbSearchTextbox"
+		         type="search"
+		         onkeypress="archivefbSearchUI.onKeyPress(event);"
+		         oncommand="archivefbSearchUI.onCommand(this.value);"
+		         accesskey="S"
+		         flex="1">
+			<image id="archivefbSearchImage"
+			       persist="searchtype"
+			       popup="archivefbSearchPopup"
+			       onclick="if (event.button == 1) archivefbSearchUI.onCommand(this.parentNode.value);" />
+		</textbox>
+	</toolbar>
+
+	<tree id="archivefbTree"
+	      datasources="rdf:null"
+	      ref="urn:archivefb:root"
+	      flags="dont-build-content">
+		<treecols id="archivefbTreeCols">
+			<treecol id="archivefbTreeColTitle" hideheader="true" primary="true" flex="1" />
+		</treecols>
+		<template>
+			<rule id="archivefbTreeRule">
+				<treechildren flex="1">
+					<treeitem uri="rdf:*">
+						<treerow>
+							<treecell id="archivefbTreeItem"
+							          label="rdf:http://amb.vis.ne.jp/mozilla/archivefb-rdf#title"
+							          src="rdf:http://amb.vis.ne.jp/mozilla/archivefb-rdf#icon"
+							          properties="Name title rdf:http://amb.vis.ne.jp/mozilla/archivefb-rdf#type" />
+						</treerow>
+					</treeitem>
+				</treechildren>
+			</rule>
+		</template>
+	</tree>
+
+	<toolbarbutton id="mbToolbarButton" type="menu" tooltiptext="Multi-archivefb" onpopupshowing="archivefbMultiBookUI.initMenu();" hidden="true">
+		<menupopup id="mbMenuPopup" oncommand="archivefbMultiBookUI.change(event.originalTarget);">
+			<menuitem id="mbMenuItem" type="radio" autocheck="false" hidden="true" />
+			<menuitem id="mbMenuItemDefault" label="&mb.profileFolder;" type="radio" autocheck="false" />
+			<menuseparator />
+			<menuitem label="&mb.manage;..." oncommand="archivefbMultiBookUI.config(); event.stopPropagation();" />
+		</menupopup>
+	</toolbarbutton>
+
+</overlay>

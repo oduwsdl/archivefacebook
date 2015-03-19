@@ -1,0 +1,8 @@
+<!ENTITY archivefb.multiple.url "URL (Enter URLs line-by-line)">
+<!ENTITY archivefb.multiple.detector "URL Detector">
+<!ENTITY archivefb.multiple.detector.plink "All Links in the Page">
+<!ENTITY archivefb.multiple.detector.slink "All Links in the Selection">
+<!ENTITY archivefb.multiple.detector.tabs "All Open Tabs in the Window">
+<!ENTITY archivefb.multiple.detector.local "All Local HTMLs in a Directory">
+<!ENTITY archivefb.multiple.detector.bookmarks "Bookmarks">
+<!ENTITY archivefb.multiple.detector.clear "Clear">

@@ -1,0 +1,74 @@
+<?xml version="1.0" ?>
+
+<?xml-stylesheet href="chrome://global/skin/" type="text/css" ?>
+<?xml-stylesheet href="chrome://archivefb/skin/archivefb.css" type="text/css" ?>
+<?xml-stylesheet href="chrome://archivefb/skin/note.css" type="text/css" ?>
+
+<!DOCTYPE window SYSTEM "chrome://archivefb/locale/note.dtd">
+
+<window id="archivefbNoteWindow"
+        xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
+        onload="archivefbNoteService2.init();"
+        onunload="archivefbNoteService2.finalize(false);">
+
+	<script type="application/x-javascript" src="chrome://archivefb/content/common.js" />
+	<script type="application/x-javascript" src="chrome://archivefb/content/scrapnote.js" />
+	<script type="application/x-javascript" src="chrome://archivefb/content/note.js" />
+
+	<browser id="archivefbNoteBrowser" type="content-primary" flex="3" collapsed="true" onload="event.stopPropagation();" />
+	<splitter id="archivefbSplitter" class="plain" collapsed="true" />
+	<vbox id="archivefbNoteEditor" flex="2">
+		<hbox id="archivefbNoteHeader" class="archivefb-header" align="center">
+		    <image id="archivefbNoteImage" />
+			<label id="archivefbNoteLabel" flex="1" crop="end" />
+			<spacer flex="1" />
+			<toolbarbutton image="chrome://archivefb/skin/expander_up.png" style="-moz-appearance:none;" hidden="true" oncommand="archivefbNoteService2.toggleHTMLView(false);" />
+		</hbox>
+		<textbox id="archivefbNoteTextbox"
+		         multiline="true"
+		         oninput="archivefbNoteService.change(true);"
+		         onkeypress="archivefbNoteService.insertString(event);"
+		         class="plain" flex="1" />
+	</vbox>
+	<vbox id="archivefbNoteTemplate" flex="2" collapsed="true">
+		<hbox id="archivefbNoteTemplateHeader" class="archivefb-header archivefb-header-red" align="center">
+			<label value="&archivefb.note.template;" />
+			<spacer flex="1" />
+			<toolbarbutton class="archivefb-header-exit" oncommand="archivefbNoteTemplate.exit(true);" />
+		</hbox>
+		<textbox id="archivefbNoteTemplateTextbox"
+		         multiline="true"
+		         oninput="archivefbNoteTemplate.change(true);"
+		         onkeypress="archivefbNoteService.insertString(event);"
+		         class="plain" flex="1" wrap="off" />
+	</vbox>
+	<toolbar id="archivefbNoteToolbar" align="center">
+		<toolbarbutton id="archivefbNoteToolbarS" accesskey="&archivefb.note.save.accesskey;" label="&archivefb.note.save;"       disabled="true" oncommand="archivefbNoteService.save();archivefbNoteTemplate.save();" />
+		<toolbarbutton id="archivefbNoteToolbarH" accesskey="&archivefb.note.htmlview.accesskey;" label="&archivefb.note.htmlview;"   oncommand="archivefbNoteService2.initHTMLView();" />
+		<toolbarbutton id="archivefbNoteToolbarN" accesskey="&archivefb.note.normalview.accesskey;" label="&archivefb.note.normalview;" disabled="true" oncommand="archivefbNoteService2.toggleHTMLView(false);" />
+		<toolbarbutton type="menu" label="&archivefb.note.tools;" accesskey="&archivefb.note.tools.accesskey;">
+			<menupopup>
+				<menuitem label="&archivefb.note.help;" oncommand="archivefbUtils.loadURL('chrome://archivefb/locale/templateHelp.html', true);" />
+				<menuseparator />
+				<menuitem id="archivefbNoteToolbarL" type="checkbox" label="&archivefb.note.autolinefeed;" tooltiptext="&archivefb.note.autolinefeed.t;" />
+				<menuitem id="archivefbNoteToolbarT" type="checkbox" label="&archivefb.note.template;" oncommand="this.getAttribute('checked') ? archivefbNoteTemplate.load() : archivefbNoteTemplate.exit(false);" />
+			</menupopup>
+		</toolbarbutton>
+		<toolbarbutton type="menu" id="archivefbNoteToolbarF" label="&archivefb.note.fontsize;" accesskey="&archivefb.note.fontsize.accesskey;">
+			<menupopup oncommand="archivefbNoteService2.changeFontSize(parseInt(event.originalTarget.label, 10));">
+				<menuitem id="archivefbNoteToolbarF18" type="radio" label="18px" />
+				<menuitem id="archivefbNoteToolbarF17" type="radio" label="17px" />
+				<menuitem id="archivefbNoteToolbarF16" type="radio" label="16px" />
+				<menuitem id="archivefbNoteToolbarF15" type="radio" label="15px" />
+				<menuitem id="archivefbNoteToolbarF14" type="radio" label="14px" />
+				<menuitem id="archivefbNoteToolbarF13" type="radio" label="13px" />
+				<menuitem id="archivefbNoteToolbarF12" type="radio" label="12px" />
+			</menupopup>
+		</toolbarbutton>
+		<toolbarbutton id="archivefbNoteToolbarP" accesskey="&archivefb.note.print.accesskey;" label="&archivefb.note.print;" oncommand="archivefbNoteService2.initHTMLView(); archivefbNoteService2.BROWSER.contentWindow.print();" />
+		<spacer flex="1" />
+		<toolbarbutton class="archivefb-header-locate" oncommand="archivefbUtils.getBrowserWindow().archivefbBrowserOverlay.execLocate(archivefbNoteService.resource);" />
+		<toolbarbutton class="archivefb-header-exit" id="archivefbNoteToolbarX" accesskey="&archivefb.note.exit.accesskey;" tooltiptext="&archivefb.note.exit;" oncommand="archivefbNoteService2.finalize(true);" />
+	</toolbar>
+
+</window>

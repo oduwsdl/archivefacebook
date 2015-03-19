@@ -1,0 +1,72 @@
+/*===========================================================================
+*   Sticky Annotation
+*==========================================================================*/
+
+div.archivefb-sticky {
+	background-color: #FAFAFA;
+	border: 1px solid #CCCCCC;
+	color: #202020;
+	white-space: pre-wrap;
+	cursor: pointer;
+	font-size: small;
+	font-weight: normal;
+	font-style: normal;
+	text-decoration: none;
+	opacity: 0.85;
+}
+
+div.archivefb-sticky * {
+	-moz-box-sizing: border-box;
+	margin: 0px;
+	padding: 0px;
+}
+
+div.archivefb-sticky .archivefb-sticky-header {
+	height: 10px;
+	background-image: url('chrome://archivefb/skin/sticky_header.png');
+	cursor: move;
+}
+
+div.archivefb-sticky textarea {
+	width: 100%;
+	font-size: small;
+	font-family: gothic;
+}
+
+div.archivefb-sticky .archivefb-sticky-footer {
+	height: 16px;
+}
+
+div.archivefb-sticky input {
+	height: 14px;
+	margin: 1px;
+	border: 1px solid #CCCCCC;
+}
+
+div.archivefb-sticky input:focus {
+	outline: none;
+	border: 1px solid dodgerblue;
+}
+
+div.archivefb-sticky div.archivefb-sticky-footer {
+	cursor: se-resize;
+	background-image: url('chrome://archivefb/skin/sticky_resizer.png');
+	background-position: right bottom;
+	background-repeat: no-repeat;
+}
+
+
+/*===========================================================================
+*   Relative Sticky Annotation
+*==========================================================================*/
+
+div.archivefb-sticky-relative {
+	margin: 16px 10px;
+}
+
+/* We can't move a relative sticky annotation */
+div.archivefb-sticky-relative .archivefb-sticky-header {
+	cursor: default;
+}
+
+

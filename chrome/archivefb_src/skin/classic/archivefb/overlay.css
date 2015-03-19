@@ -1,0 +1,120 @@
+/* ::::: NAMESPACE ::::: */
+
+@namespace url("http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul");
+
+/* ::::: MAIN TOOLBAR BUTTON ::::: */
+
+#archivefb-button {
+	list-style-image: url("chrome://archivefb/skin/main_24.png");
+}
+
+toolbar[iconsize="small"] #archivefb-button > .toolbarbutton-icon {
+	list-style-image: url("chrome://archivefb/skin/main_16.png");
+	width: 16px;
+	height: 16px;
+}
+
+
+/* ::::: CONTEXT_MENU ::::: */
+
+.archivefb-capture-partial { list-style-image: url('chrome://archivefb/skin/capture_partial.png'); }
+.archivefb-capture-entire  { list-style-image: url('chrome://archivefb/skin/capture_entire.png'); }
+.archivefb-capture-target  { list-style-image: url('chrome://archivefb/skin/capture_target.png'); }
+.archivefb-capture-frame   { list-style-image: url('chrome://archivefb/skin/capture_frame.png'); }
+
+.archivefb-capture-partial > .menu-iconic-left image,
+.archivefb-capture-entire  > .menu-iconic-left image,
+.archivefb-capture-target  > .menu-iconic-left image,
+.archivefb-capture-frame   > .menu-iconic-left image { width : 13px !important; height: 13px !important; }
+
+
+/* ::::: MENUBAR ::::: */
+
+#archivefbMenu menuitem.archivefb-item {
+	list-style-image: url('chrome://archivefb/skin/treeitem.png') !important;
+}
+
+#archivefbMenu menuitem.archivefb-item[archivefbtype="note"] {
+	list-style-image: url('chrome://archivefb/skin/treenote.png') !important;
+}
+
+#archivefbMenu menuitem.archivefb-item[archivefbtype="marked"] {
+	font-weight: bold;
+}
+
+#archivefbMenu menuitem.archivefb-item[archivefbtype="combine"] {
+	color: blue;
+}
+
+#archivefbMenu menuitem.archivefb-item[archivefbtype="bookmark"] {
+	color: rgb(32,192,32);
+}
+
+
+/* ::::: EDITOR / INFOBAR ::::: */
+
+toolbox#archivefbToolbox toolbar {
+	border-top: 1px solid ThreeDShadow;
+	padding: 1px;
+}
+
+toolbox#archivefbToolbox toolbar > image {
+	margin-left: 3px;
+}
+
+toolbox#archivefbToolbox toolbarbutton .toolbarbutton-icon {
+	margin-left : 2px;
+	margin-right: 2px;
+}
+
+toolbox#archivefbToolbox toolbarbutton[type="menu-button"] .toolbarbutton-icon {
+	margin-right: 0px;
+}
+
+toolbox#archivefbToolbox textbox {
+	min-height: 2em;
+}
+
+
+/* ::::: HIGHLIGHTER ::::: */
+
+toolbar#archivefbEditor #archivefbHighlighter menuitem[type="radio"] {
+	padding: 2px;
+	margin: 1px;
+}
+
+toolbar#archivefbEditor #archivefbHighlighter menuitem[type="radio"] {
+	border: 1px solid transparent;
+}
+
+toolbar#archivefbEditor #archivefbHighlighter menupopup {
+	min-width: 200px;
+}
+
+
+/* ::::: INFOBAR ::::: */
+
+toolbar#archivefbInfobar {
+	background-color: InfoBackground;
+	padding-left: 8px;
+	border-top: 1px solid ThreeDShadow !important;
+}
+
+toolbar#archivefbInfobar label {
+	color: InfoText;
+	cursor: pointer;
+	margin-right: 50px;
+}
+
+toolbar#archivefbInfobar toolbarbutton {
+	-moz-appearance: none;
+	margin: 1px 0px 1px 6px;
+	padding: 2px;
+	background: none;
+}
+
+toolbar#archivefbInfobar toolbarbutton[disabled="true"] label {
+	color: GrayText;
+}
+
+

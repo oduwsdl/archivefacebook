@@ -1,0 +1,18 @@
+<!ENTITY archivefb.capture.partial "Capture Selection">
+<!ENTITY archivefb.capture.partial.as "Capture Selection As">
+<!ENTITY archivefb.capture.entire "Archive All">
+<!ENTITY archivefb.capture.entire.as "Capture Page As">
+<!ENTITY archivefb.capture.frame "Capture Frame">
+<!ENTITY archivefb.capture.frame.as "Capture Frame As">
+<!ENTITY archivefb.capture.target "Capture Link">
+<!ENTITY archivefb.capture.target.as "Capture Link As">
+<!ENTITY archivefb.capture.alltabs "Capture All Tabs">
+<!ENTITY archivefb.capture.bookmark "Bookmark with ArchiveFacebook">
+<!ENTITY archivefb.sidebar "Show in Sidebar">
+<!ENTITY archivefb.menu "Menu">
+<!ENTITY archivefb.editbefore "Edit Before Capture">
+<!ENTITY archivefb.key.sidebar "K">
+<!ENTITY archivefb.key.menubar "A">
+<!ENTITY archivefb.key.capture "L">
+<!ENTITY archivefb.key.capture.as "K">
+<!ENTITY archivefb.key.bookmark "J">

@@ -1,0 +1,23 @@
+<!ENTITY archivefb.toolbar.edit "Edit Toolbar">
+<!ENTITY archivefb.toolbar.info "Info Toolbar">
+<!ENTITY archivefb.edit.eraser "DOM Eraser: A tool for removing clicked elements in Web page">
+<!ENTITY archivefb.edit.undo "Undo">
+<!ENTITY archivefb.edit.save "Save Changes">
+<!ENTITY archivefb.edit.comment "Expand Comment Area">
+<!ENTITY archivefb.edit.sticky "Sticky Annotation">
+<!ENTITY archivefb.edit.sticky.create "Create &archivefb.edit.sticky;">
+<!ENTITY archivefb.edit.inline.add "Add Inline Annotation to Selection">
+<!ENTITY archivefb.edit.attach.file "Attach File to Selection">
+<!ENTITY archivefb.edit.attach.link "Attach Link to Selection">
+<!ENTITY archivefb.edit.cutter "Remove the Selection">
+<!ENTITY archivefb.edit.remove.iframe "Remove All IFRAME Tags">
+<!ENTITY archivefb.edit.remove.script "Remove All SCRIPT Tags">
+<!ENTITY archivefb.highlighter "Highlighter">
+<!ENTITY archivefb.highlighter.remove "Clear Highlights in the Selection">
+<!ENTITY archivefb.highlighter.remove.all "Clear All Highlights">
+<!ENTITY archivefb.source "Open Source URL">
+<!ENTITY archivefb.renew "Capture Again">
+<!ENTITY archivefb.locate "Locate in Sidebar Tree">
+<!ENTITY archivefb.indicators "Show Link Indicators">
+<!ENTITY archivefb.info.home "Home">
+<!ENTITY archivefb.info.sitemap "SiteMap">

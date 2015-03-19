@@ -1,0 +1,97 @@
+<?xml version="1.0" ?>
+
+<?xml-stylesheet href="chrome://global/skin/" type="text/css" ?>
+<?xml-stylesheet href="chrome://archivefb/skin/archivefb.css" type="text/css" ?>
+<?xml-stylesheet href="chrome://browser/skin/places/editBookmarkOverlay.css" type="text/css" ?>
+
+<!DOCTYPE dialog [
+	<!ENTITY % propDTD   SYSTEM "chrome://archivefb/locale/property.dtd" >
+	%propDTD;
+	<!ENTITY % treeDTD   SYSTEM "chrome://archivefb/locale/tree.dtd" >
+	%treeDTD;
+	<!ENTITY % detailDTD SYSTEM "chrome://archivefb/locale/detail.dtd" >
+	%detailDTD;
+]>
+
+<dialog id="archivefbDetailDialog"
+        title="Archive Facebook - &archivefb.detail;"
+        xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
+        style="width: 400px;"
+        persist="screenX screenY"
+        onload="archivefbCaptureOptions.init();"
+        ondialogaccept="archivefbCaptureOptions.accept();"
+        ondialogcancel="archivefbCaptureOptions.cancel();">
+
+	<script type="application/x-javascript" src="chrome://archivefb/content/common.js" />
+	<script type="application/x-javascript" src="chrome://archivefb/content/detail.js" />
+
+	<tabbox flex="1">
+		<tabs orient="horizontal">
+			<tab label="&archivefb.prop.general;" />
+			<tab label="&archivefb.prop.comment;" />
+		</tabs>
+		<tabpanels flex="1">
+			<tabpanel orient="vertical">
+				<grid style="margin-top:3px;">
+					<columns>
+						<column />
+						<column flex="1" />
+					</columns>
+					<rows>
+						<row align="center" style="margin-bottom:6px;">
+							<label control="archivefbDetailTitle" value="&archivefb.prop.title;:" />
+							<menulist id="archivefbDetailTitle" editable="true" flex="1" />
+						</row>
+						<row id="archivefbDetailFolderRow" align="center" style="margin-bottom:6px;">
+							<label value="&archivefb.prop.folder;:" />
+							<hbox>
+								<menulist id="archivefbFolderList" class="folder-icon" flex="1" onclick="if ( event.button == 1 ) archivefbFolderSelector.onMiddleClick();" disabled="true">
+									<menupopup id="archivefbFolderPopup" oncommand="archivefbFolderSelector.onChange(event.target.id);" />
+								</menulist>
+								<toolbarbutton id="archivefbToolbarNewFolder" tooltiptext="&archivefb.detail.new.folder;..."    oncommand="archivefbFolderSelector.createFolder();" />
+								<toolbarbutton id="archivefbToolbarMove"      tooltiptext="&archivefb.detail.select.folder;..." oncommand="archivefbFolderSelector.pick();" />
+							</hbox>
+						</row>
+					</rows>
+				</grid>
+				<hbox group="capture-options" align="center">
+					<label value="&archivefb.detail.option;:" />
+					<checkbox id="archivefbDetailOptionImages" label="&archivefb.detail.option.images;" checked="true" />
+					<checkbox id="archivefbDetailOptionStyles" label="&archivefb.detail.option.styles;" checked="true" />
+					<checkbox id="archivefbDetailOptionScript" label="JavaScript" oncommand="archivefbCaptureOptions.toggleWarningUI();" />
+				</hbox>
+				<groupbox group="capture-options" style="margin-top:8px;">
+					<caption label="&archivefb.detail.linked.file;" />
+					<checkbox id="archivefbDetailImage"   persist="checked" label="&archivefb.detail.linked.image; (jpg, png, gif, tiff)" />
+					<checkbox id="archivefbDetailSound"   persist="checked" label="&archivefb.detail.linked.sound; (mp3, wav, ram, wma)" />
+					<checkbox id="archivefbDetailMovie"   persist="checked" label="&archivefb.detail.linked.movie; (mpg, avi, mov, wmv)" />
+					<checkbox id="archivefbDetailArchive" persist="checked" label="&archivefb.detail.linked.archive; (zip, lzh, rar, jar, xpi)" />
+					<hbox align="center">
+						<checkbox id="archivefbDetailCustom" persist="checked" label="&archivefb.detail.linked.custom;" oncommand="archivefbCaptureOptions.toggleCustomUI();" />
+						<textbox flex="1" />
+					</hbox>
+				</groupbox>
+				<groupbox id="archivefbDetailInDepthBox" group="capture-options">
+					<caption label="&archivefb.detail.linked.page;" />
+					<hbox align="center">
+						<label id="archivefbDetailInDepthLabel" value="&archivefb.detail.linked.page.depth;:" />
+						<radiogroup id="archivefbDetailInDepthRadioGroup" orient="horizontal" onselect="archivefbCaptureOptions.inDepth = this.selectedIndex;">
+							<radio label="0" selected="true" />
+							<radio label="1" />
+							<radio label="2" />
+							<radio label="3" />
+						</radiogroup>
+						<toolbarbutton class="plain" image="chrome://archivefb/skin/expander.png" style="-moz-appearance:none;" oncommand="archivefbCaptureOptions.promptInDepth();" />
+					</hbox>
+					<!--<description flex="1">&archivefb.detail.linked.page.text;</description>-->
+				</groupbox>
+				<description id="archivefbDetailWarnAboutRenew"  flex="1" style="color:red;" hidden="true">&archivefb.detail.warnAboutRenew;</description>
+				<description id="archivefbDetailWarnAboutScript" flex="1" style="color:red;">&archivefb.detail.warnAboutScript;</description>
+			</tabpanel>
+			<tabpanel>
+				<textbox id="archivefbDetailComment" multiline="true" spellcheck="true" flex="1" />
+			</tabpanel>
+		</tabpanels>
+	</tabbox>
+
+</dialog>

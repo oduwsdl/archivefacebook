@@ -1,0 +1,19 @@
+<!ENTITY archivefb.note.save "Save">
+<!ENTITY archivefb.note.close "Close">
+<!ENTITY archivefb.note.tools "Tools">
+<!ENTITY archivefb.note.htmlview "HTML View">
+<!ENTITY archivefb.note.normalview "Normal View">
+<!ENTITY archivefb.note.template "Edit Template HTML">
+<!ENTITY archivefb.note.autolinefeed "Auto-Linefeed">
+<!ENTITY archivefb.note.autolinefeed.t "Add &lt;br&gt; tag to the end-of-line at &archivefb.note.htmlview;">
+<!ENTITY archivefb.note.fontsize "Font Size">
+<!ENTITY archivefb.note.help "Help">
+<!ENTITY archivefb.note.print "Print">
+<!ENTITY archivefb.note.exit "Exit">
+<!ENTITY archivefb.note.save.accesskey "S">
+<!ENTITY archivefb.note.htmlview.accesskey "H">
+<!ENTITY archivefb.note.normalview.accesskey "N">
+<!ENTITY archivefb.note.tools.accesskey "T">
+<!ENTITY archivefb.note.fontsize.accesskey "F">
+<!ENTITY archivefb.note.print.accesskey "P">
+<!ENTITY archivefb.note.exit.accesskey "X">

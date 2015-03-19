@@ -1,0 +1,13 @@
+<!ENTITY archivefb.capture "Capture">
+<!ENTITY archivefb.capture.abort "Abort">
+<!ENTITY archivefb.capture.start "Start">
+<!ENTITY archivefb.capture.retry "Retry">
+<!ENTITY archivefb.capture.skip "Skip">
+<!ENTITY archivefb.capture.pause "Pause">
+<!ENTITY archivefb.capture.filter "Filter">
+<!ENTITY archivefb.capture.filter.domain "Restrict to Domain">
+<!ENTITY archivefb.capture.filter.level "Restrict to Directory">
+<!ENTITY archivefb.capture.filter.string "Filter by String...">
+<!ENTITY archivefb.capture.filter.checkon "Check All On">
+<!ENTITY archivefb.capture.filter.checkoff "Check All Off">
+<!ENTITY archivefb.capture.filter.invert "Invert Checks">

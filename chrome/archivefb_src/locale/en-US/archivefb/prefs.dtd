@@ -1,0 +1,34 @@
+<!ENTITY archivefb.prefs.main "Main">
+<!ENTITY archivefb.prefs.tabs "Tabs">
+<!ENTITY archivefb.prefs.save "Save">
+<!ENTITY archivefb.prefs.edit "Edit">
+<!ENTITY archivefb.prefs.organize "Organize">
+<!ENTITY archivefb.prefs.advanced "Advanced">
+<!ENTITY archivefb.prefs.ui.contextMenu "Show in browser context menu">
+<!ENTITY archivefb.prefs.ui.contextSubMenu "Submenu">
+<!ENTITY archivefb.prefs.ui.bookmarkMenu "Show &apos;Bookmark with ScrapBook&apos; menu">
+<!ENTITY archivefb.prefs.ui.folderList.maxEntries.1 "Show up to">
+<!ENTITY archivefb.prefs.ui.folderList.maxEntries.2 "recently used folders">
+<!ENTITY archivefb.prefs.ui.menuBar "Show in menu bar">
+<!ENTITY archivefb.prefs.ui.menuBar.icon "Icon">
+<!ENTITY archivefb.prefs.ui.toolsMenu "Show in &apos;Tools&apos; menu">
+<!ENTITY archivefb.prefs.ui.statusBar "Show in status bar">
+<!ENTITY archivefb.prefs.restart "Change requires Firefox restart.">
+<!ENTITY archivefb.prefs.tabs.tips "Open in tab for the following operations">
+<!ENTITY archivefb.prefs.tabs.note "Edit Note">
+<!ENTITY archivefb.prefs.data "Location to Store Data">
+<!ENTITY archivefb.prefs.data.default "Default (Profile Folder)">
+<!ENTITY archivefb.prefs.data.custom "Save data to">
+<!ENTITY archivefb.prefs.data.tips "Choose a folder where to store the ScrapBook data.">
+<!ENTITY archivefb.prefs.multibook.enabled "Enable Multi-ScrapBook">
+<!ENTITY archivefb.prefs.multibook.tips "Multi-ScrapBook enables you to set up multiple locations to store data and switch between them quickly with toolbar button.">
+<!ENTITY archivefb.prefs.confirmDelete "Warn me when deleting tree item(s)">
+<!ENTITY archivefb.prefs.tree.autoCollapse "When opening a tree folder, automatically close other folders">
+<!ENTITY archivefb.prefs.tree.unshift "Put an item into">
+<!ENTITY archivefb.prefs.tree.unshift.top "the top of a folder">
+<!ENTITY archivefb.prefs.tree.unshift.bottom "the bottom of a folder">
+<!ENTITY archivefb.prefs.showDetailOnDrop "Show &apos;Capture Detail&apos; dialog when capturing by drag-and-drop into Sidebar">
+<!ENTITY archivefb.prefs.notifyOnComplete "Show &apos;Capture Completed&apos; notification">
+<!ENTITY archivefb.button.customize "Customize">
+<!ENTITY archivefb.button.browse "Browse">
+<!ENTITY archivefb.button.show "Show Files">

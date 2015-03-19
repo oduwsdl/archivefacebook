@@ -1,0 +1,13 @@
+<!ENTITY archivefb.prop.general "General Info">
+<!ENTITY archivefb.prop.type "Type">
+<!ENTITY archivefb.prop.date "Date">
+<!ENTITY archivefb.prop.encode "Encode">
+<!ENTITY archivefb.prop.size "Size">
+<!ENTITY archivefb.prop.content "Content">
+<!ENTITY archivefb.prop.folder "Folder">
+<!ENTITY archivefb.prop.icon "Icon">
+<!ENTITY archivefb.prop.icon.change "Change">
+<!ENTITY archivefb.prop.icon.default "Default">
+<!ENTITY archivefb.prop.icon.favicon "Select favicon">
+<!ENTITY archivefb.prop.icon.custom "Select user icon">
+<!ENTITY archivefb.prop.mark "Mark">

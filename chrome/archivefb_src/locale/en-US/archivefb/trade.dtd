@@ -1,0 +1,5 @@
+<!ENTITY archivefb.trade.import "Import">
+<!ENTITY archivefb.trade.export "Export">
+<!ENTITY archivefb.trade.time "Exported Time">
+<!ENTITY archivefb.trade.restore "Import with restoring folder structure">
+<!ENTITY archivefb.trade.remove "Remove files after importing">

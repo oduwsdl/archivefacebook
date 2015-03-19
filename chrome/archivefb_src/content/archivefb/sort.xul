@@ -1,0 +1,38 @@
+<?xml version="1.0" ?>
+
+<?xml-stylesheet href="chrome://global/skin/" type="text/css" ?>
+
+<!DOCTYPE wizard [
+	<!ENTITY % mainDTD SYSTEM "chrome://archivefb/locale/archivefb.dtd" >
+	%mainDTD;
+	<!ENTITY % sortDTD SYSTEM "chrome://archivefb/locale/sort.dtd" >
+	%sortDTD;
+]>
+
+<wizard id="archivefbSortWizard"
+        xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
+        title="&archivefb.sort; - ScrapBook"
+        onload="archivefbSortService.init();"
+        windowtype="archivefb">
+
+	<script type="application/x-javascript" src="chrome://archivefb/content/common.js" />
+	<script type="application/x-javascript" src="chrome://archivefb/content/sort.js" />
+
+	<wizardpage pageid="archivefbSortStartPage" label="&archivefb.sort;">
+		<radiogroup id="archivefbSortRadioGroup" persist="sortIndex">
+			<radio label="&archivefb.sort.reverse;" />
+			<radio label="&archivefb.sort.title.asc;" />
+			<radio label="&archivefb.sort.title.desc;" />
+			<radio label="&archivefb.sort.date.asc;" />
+			<radio label="&archivefb.sort.date.desc;" />
+		</radiogroup>
+		<separator class="groove" />
+		<checkbox id="archivefbSortRecursive" label="&archivefb.sort.recursive;" persist="checked" />
+		<description id="archivefbSortWarning" value="&archivefb.sort.warning;" style="margin:10px;color:red;" />
+	</wizardpage>
+
+	<wizardpage pageid="archivefbSortProcessPage" label="&archivefb.sort;" onpageshow="archivefbSortService.exec();">
+		<textbox id="archivefbSortTextbox" readonly="true" />
+	</wizardpage>
+
+</wizard>

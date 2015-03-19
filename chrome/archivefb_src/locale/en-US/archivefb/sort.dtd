@@ -1,0 +1,8 @@
+<!ENTITY archivefb.sort "Sort">
+<!ENTITY archivefb.sort.reverse "Reverse">
+<!ENTITY archivefb.sort.title.asc "Sort by Title (A &gt; Z)">
+<!ENTITY archivefb.sort.title.desc "Sort by Title (Z &gt; A)">
+<!ENTITY archivefb.sort.date.asc "Chronological">
+<!ENTITY archivefb.sort.date.desc "Reverse Chronological">
+<!ENTITY archivefb.sort.recursive "Sort Sub-folders Recursively">
+<!ENTITY archivefb.sort.warning "Notice: You can&apos;t undo this operation.">

@@ -1,0 +1,20 @@
+<!ENTITY archivefb.hlCustom.preset "Preset Styles">
+<!ENTITY archivefb.hlCustom.background "Background">
+<!ENTITY archivefb.hlCustom.color "Color">
+<!ENTITY archivefb.hlCustom.text "Text">
+<!ENTITY archivefb.hlCustom.bold "Bold">
+<!ENTITY archivefb.hlCustom.italic "Italic">
+<!ENTITY archivefb.hlCustom.line "Line-through">
+<!ENTITY archivefb.hlCustom.border "Border">
+<!ENTITY archivefb.hlCustom.type "Type">
+<!ENTITY archivefb.hlCustom.box "Box">
+<!ENTITY archivefb.hlCustom.underline "Underline">
+<!ENTITY archivefb.hlCustom.style "Style">
+<!ENTITY archivefb.hlCustom.solid "Solid">
+<!ENTITY archivefb.hlCustom.dotted "Dotted">
+<!ENTITY archivefb.hlCustom.dashed "Dashed">
+<!ENTITY archivefb.hlCustom.double "Double">
+<!ENTITY archivefb.hlCustom.width "Width">
+<!ENTITY archivefb.hlCustom.thin "Thin">
+<!ENTITY archivefb.hlCustom.medium "Medium">
+<!ENTITY archivefb.hlCustom.thick "Thick">

@@ -1,0 +1,96 @@
+<?xml version="1.0" ?>
+
+<?xml-stylesheet href="chrome://global/skin/" type="text/css" ?>
+<?xml-stylesheet href="chrome://archivefb/skin/property.css" type="text/css" ?>
+
+<!DOCTYPE dialog [
+	<!ENTITY % propDTD SYSTEM "chrome://archivefb/locale/property.dtd" >
+	%propDTD;
+	<!ENTITY % treeDTD SYSTEM "chrome://archivefb/locale/tree.dtd" >
+	%treeDTD;
+]>
+
+<dialog id="archivefbPropDialog"
+        xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
+        buttons="accept,cancel"
+        onload="archivefbPropService.init();"
+        ondialogaccept="archivefbPropService.accept();"
+        ondialogcancel="archivefbPropService.cancel();">
+
+	<script type="application/x-javascript" src="chrome://archivefb/content/common.js" />
+	<script type="application/x-javascript" src="chrome://archivefb/content/property.js" />
+
+	<stringbundle id="archivefbPropString" src="chrome://archivefb/locale/property.properties" />
+
+	<tabbox>
+		<tabs orient="horizontal">
+			<tab label="&archivefb.prop.general;" />
+			<tab label="&archivefb.prop.comment;" id="archivefbPropCommentTab" />
+		</tabs>
+		<tabpanels>
+			<tabpanel>
+				<grid flex="1">
+					<columns>
+						<column />
+						<column flex="1" />
+					</columns>
+					<rows id="archivefbPropRows">
+						<row align="center">
+							<label control="archivefbPropTitle" value="&archivefb.prop.title;:" />
+							<hbox>
+								<menulist id="archivefbPropTitle" editable="true" flex="1">
+									<menupopup onpopupshowing="archivefbPropService.fillTitle(this);" />
+								</menulist>
+							</hbox>
+						</row>
+						<row id="archivefbPropSourceRow" align="center">
+							<label control="archivefbPropSource" value="URL:" />
+							<textbox id="archivefbPropSource" />
+						</row>
+						<row id="archivefbPropIconRow" align="center">
+							<label value="&archivefb.prop.icon;:" />
+							<hbox align="center">
+								<image id="archivefbPropIcon" style="width:16px;height:16px;margin:0px 8px;" />
+								<toolbarbutton id="archivefbPropIconMenu" label="&archivefb.prop.icon.change;" type="menu">
+									<menupopup>
+										<menuitem label="&archivefb.prop.icon.default;"    oncommand="archivefbPropService.setDefaultIcon();" />
+										<menuitem label="&archivefb.prop.icon.favicon;..." oncommand="archivefbPropService.pickupIcon('F',this.label);" />
+										<menuitem label="&archivefb.prop.icon.custom;..."  oncommand="archivefbPropService.pickupIcon('U',this.label);" />
+										<menuitem label="URL..." oncommand="archivefbPropService.setIconURL();" />
+									</menupopup>
+								</toolbarbutton>
+								<spacer flex="1" />
+								<checkbox id="archivefbPropMark" label="&archivefb.prop.mark;" />
+							</hbox>
+						</row>
+						<separator class="groove" style="margin:8px 0px;" />
+						<row align="center">
+							<label value="ID:" />
+							<textbox id="archivefbPropID" readonly="true" />
+						</row>
+						<row align="center">
+							<label value="&archivefb.prop.date;:" />
+							<textbox id="archivefbPropDate" readonly="true" />
+						</row>
+						<row align="center">
+							<label value="&archivefb.prop.type;:" />
+							<textbox id="archivefbPropType" readonly="true" />
+						</row>
+						<row id="archivefbPropCharsRow" align="center">
+							<label value="&archivefb.prop.encode;:" />
+							<textbox id="archivefbPropChars" readonly="true" />
+						</row>
+						<row id="archivefbPropSizeRow" align="center">
+							<label value="&archivefb.prop.size;:" />
+							<textbox id="archivefbPropSize" readonly="true" />
+						</row>
+					</rows>
+				</grid>
+			</tabpanel>
+			<tabpanel>
+				<textbox id="archivefbPropComment" multiline="true" flex="1" oninput="archivefbPropService.updateCommentTab(this.value);" />
+			</tabpanel>
+		</tabpanels>
+	</tabbox>
+
+</dialog>

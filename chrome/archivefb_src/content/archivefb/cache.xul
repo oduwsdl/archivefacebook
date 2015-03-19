@@ -1,0 +1,23 @@
+<?xml version="1.0" ?>
+
+<?xml-stylesheet href="chrome://global/skin/" type="text/css" ?>
+
+<window id="archivefbCacheWindow"
+        xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
+        onload="ARCHIVEFB_initFT('CACHE');"
+        style="width: 320px;"
+        screenX="20" screenY="20"
+        persist="screenX screenY"
+        windowtype="archivefb">
+
+	<script type="application/x-javascript" src="chrome://archivefb/content/common.js" />
+	<script type="application/x-javascript" src="chrome://archivefb/content/fulltext.js" />
+
+	<stringbundle id="archivefbCacheString" src="chrome://archivefb/locale/fulltext.properties" />
+
+	<vbox id="archivefbCacheStatus" style="padding:2px;">
+		<textbox id="archivefbCacheStatusLabel" flex="1" readonly="true" />
+		<progressmeter id="archivefbCacheStatusProgress" flex="1" mode="determined" value="0" />
+	</vbox>
+
+</window>

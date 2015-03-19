@@ -1,0 +1,4 @@
+<!ENTITY archivefb.combine.dragdrop "Add items by drag-and-drop from the tree in the order you want to combine. You can drag-and-drop multiple items at once.">
+<!ENTITY archivefb.combine.preview "Preview">
+<!ENTITY archivefb.combine.preview.d "Press &apos;Combine&apos; button after verifying the preview.">
+<!ENTITY archivefb.combine.option.remove "After completing combine, remove original pages">

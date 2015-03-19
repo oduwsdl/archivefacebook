@@ -1,0 +1,65 @@
+<?xml version="1.0" ?>
+
+<?xml-stylesheet href="chrome://global/skin/" type="text/css" ?>
+<?xml-stylesheet href="chrome://archivefb/skin/archivefb.css" type="text/css" ?>
+
+<!DOCTYPE dialog [
+	<!ENTITY % mainDTD     SYSTEM "chrome://archivefb/locale/archivefb.dtd" >
+	%mainDTD;
+	<!ENTITY % propDTD     SYSTEM "chrome://archivefb/locale/property.dtd" >
+	%propDTD;
+	<!ENTITY % detailDTD   SYSTEM "chrome://archivefb/locale/detail.dtd" >
+	%detailDTD;
+	<!ENTITY % multipleDTD SYSTEM "chrome://archivefb/locale/multiple.dtd" >
+	%multipleDTD;
+	<!ENTITY % overlayDTD  SYSTEM "chrome://archivefb/locale/overlay.dtd" >
+	%overlayDTD;
+]>
+
+<dialog id="archivefbMultipleDialog"
+        title="&archivefb.tools.multiple; - archivefb"
+        xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
+        style="width:400px;"
+        buttonlabelextra2="&archivefb.capture.alltabs;"
+        onload="archivefbMultipleService.init();"
+        ondialogaccept="archivefbMultipleService.done();"
+        ondialogextra2="window.opener.top.archivefbMenuHandler.execCaptureAllTabs(archivefbFolderSelector2.resURI); window.close();"
+        windowtype="archivefb">
+
+	<script type="application/x-javascript" src="chrome://archivefb/content/common.js" />
+	<script type="application/x-javascript" src="chrome://archivefb/content/folderPicker.js" />
+	<script type="application/x-javascript" src="chrome://archivefb/content/multiple.js" />
+
+	<grid style="margin-top:3px;">
+		<columns>
+			<column />
+			<column flex="1" />
+		</columns>
+		<rows>
+			<row align="center" style="margin-bottom:8px;">
+				<label value="&archivefb.prop.folder;:" />
+				<textbox id="archivefbFolderTextbox" readonly="true" flex="1" />
+				<toolbarbutton id="archivefbToolbarMove" tooltiptext="&archivefb.detail.select.folder;..." oncommand="archivefbFolderSelector2.pick();" />
+			</row>
+		</rows>
+	</grid>
+
+	<description>&archivefb.multiple.url;:</description>
+	<hbox align="right">
+		<button type="menu" label="&archivefb.multiple.detector;">
+			<menupopup>
+				<menuitem label="&archivefb.multiple.detector.plink;" oncommand="archivefbMultipleService.detectURLsInPage();" />
+				<menuitem label="&archivefb.multiple.detector.slink;" oncommand="archivefbMultipleService.detectURLsInSelection();" />
+				<menuitem label="&archivefb.multiple.detector.tabs;"  oncommand="archivefbMultipleService.detectURLsOfTabs();" />
+				<menuitem label="&archivefb.multiple.detector.local;" oncommand="archivefbURLDetector1.run();" />
+				<menuitem label="&archivefb.multiple.detector.bookmarks; (bookmarks.html)" oncommand="archivefbURLDetector2.run('B');" />
+				<menuitem label="WeBoX (default.html)"         oncommand="archivefbURLDetector2.run('W');" />
+				<menuseparator />
+				<menuitem label="&archivefb.multiple.detector.clear;"    oncommand="archivefbMultipleService.clear();" />
+			</menupopup>
+		</button>
+	</hbox>
+	<textbox id="archivefbTextbox" multiline="true" rows="15" flex="1" />
+	<label id="archivefbStatus" crop="end" value="" />
+
+</dialog>

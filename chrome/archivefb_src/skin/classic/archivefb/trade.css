@@ -1,0 +1,28 @@
+/* ::::: TRADE ::::: */
+
+tree {
+	-moz-appearance: listbox;
+}
+
+tree#archivefbTradeTree treechildren::-moz-tree-image(archivefbTradeTreeColTitle) {
+	-moz-image-region: auto !important;
+	width: 16px; height: 16px;
+	margin-right: 3px;
+}
+
+tree#archivefbTradeTree treechildren::-moz-tree-cell-text(separator) {
+	color: GrayText;
+}
+
+#archivefbTradeLog {
+	height: 6.4em;
+	-moz-appearance: listbox;
+}
+
+#archivefbTradeIcon {
+	width: 16px;
+	height: 16px;
+	margin-left: 5px;
+}
+
+

@@ -1,0 +1,18 @@
+<!ENTITY archivefb.new.folder "New Folder">
+<!ENTITY archivefb.new.separator "New Separator">
+<!ENTITY archivefb.new.note "New Note">
+<!ENTITY archivefb.toggle.all "Open/close All Folders">
+<!ENTITY archivefb.tools "Tools">
+<!ENTITY archivefb.tools.options "Options">
+<!ENTITY archivefb.tools.manage "Manage">
+<!ENTITY archivefb.tools.combine "Combine Wizard">
+<!ENTITY archivefb.tools.trade "Import / Export">
+<!ENTITY archivefb.tools.multiple "Capture Multiple URLs">
+<!ENTITY archivefb.tools.directory "ArchiveFB Directory">
+<!ENTITY archivefb.tools.calculate "Calculation of Size">
+<!ENTITY archivefb.tools.sorttree "Sort Entire Tree">
+<!ENTITY archivefb.tools.output "Output Tree as HTML">
+<!ENTITY archivefb.tools.repair "Emergency Repair">
+<!ENTITY archivefb.tools.addons "Add-on Functions">
+<!ENTITY archivefb.note.opentab "Open in Tab">
+<!ENTITY archivefb.note.close "Close">

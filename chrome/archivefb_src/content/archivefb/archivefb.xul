@@ -1,0 +1,80 @@
+<?xml version="1.0" ?>
+
+<?xml-stylesheet href="chrome://global/skin/" type="text/css" ?>
+<?xml-stylesheet href="chrome://archivefb/skin/archivefb.css" type="text/css" ?>
+
+<?xul-overlay href="chrome://archivefb/content/tree.xul"?>
+
+<!DOCTYPE window SYSTEM "chrome://archivefb/locale/archivefb.dtd">
+
+<window id="archivefbWindow"
+        title="archivefb"
+        xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
+        onload="archivefbMainUI.init();"
+        onunload="archivefbMainUI.done();"
+        windowtype="archivefb">
+
+	<script type="application/x-javascript" src="chrome://archivefb/content/scrapnote.js" />
+
+	<popupset id="archivefbPopupSet" />
+
+	<toolbox id="archivefbMainToolbox">
+		<toolbar id="archivefbSearchToolbar" />
+		<toolbar id="archivefbMainToolbar">
+			<toolbarbutton id="archivefbToolbarNewFolder" type="menu">
+				<menupopup>
+					<menuitem class="menuitem-iconic archivefb-create" label="&archivefb.new.folder;..." oncommand="archivefbMainUI.createFolder();" />
+					<menuitem class="menuitem-iconic archivefb-create" label="&archivefb.new.separator;" oncommand="archivefbMainUI.createSeparator();" />
+					<menuitem class="menuitem-iconic archivefb-create" label="&archivefb.new.note;"      oncommand="archivefbMainUI.createNote();" />
+				</menupopup>
+			</toolbarbutton>
+			<toolbarbutton id="archivefbToolbarToggle"   tooltiptext="&archivefb.toggle.all;" oncommand="archivefbTreeUI.toggleAllFolders();" />
+			<toolbarbutton id="mbToolbarButton" />
+			<spacer flex="1" />
+			<toolbarbutton type="menu" label="&archivefb.tools;">
+				<menupopup id="archivefbToolsMenuPopup">
+					<menuitem label="&archivefb.tools.options;..."   oncommand="archivefbMainUI.openPrefWindow();" />
+					<menuseparator />
+					<menuitem label="&archivefb.tools.manage;..." oncommand="archivefbUtils.openManageWindow(null,null);" />
+					<menuitem label="&archivefb.tools.combine;"   oncommand="archivefbUtils.openManageWindow(null,'archivefbToolbarCombine');" />
+					<menuitem label="&archivefb.tools.trade;"     oncommand="archivefbUtils.openManageWindow(null,'archivefbToolbarTrade');" />
+					<menuitem label="&archivefb.tools.multiple;"  oncommand="window.top.openDialog('chrome://archivefb/content/multiple.xul','','chrome,centerscreen,all,resizable,dialog=no');" />
+					<menuitem label="&archivefb.tools.directory;" oncommand="archivefbController.launch(archivefbUtils.getarchivefbDir());" />
+					<menuseparator />
+					<menu id="archivefbAddOns" label="&archivefb.tools.addons;"><menupopup id="archivefbAddOnsPopup" /></menu>
+					<menuitem label="&archivefb.tools.calculate;" oncommand="window.openDialog('chrome://archivefb/content/calculate.xul','archivefb:Calculate','chrome,centerscreen,all,resizable,dialog=no');" />
+					<menuitem label="&archivefb.tools.sorttree;"  oncommand="window.openDialog('chrome://archivefb/content/sort.xul','','chrome,centerscreen,modal');" />
+					<menuitem label="&archivefb.tools.output;"    oncommand="window.openDialog('chrome://archivefb/content/output.xul','archivefb:Output','chrome,centerscreen,modal,resizable');" />
+					<menuitem label="&archivefb.tools.repair;"    oncommand="window.openDialog('chrome://archivefb/content/repair.xul','archivefb:Repair','chrome,centerscreen,all,modal,resizable,dialog=no');" />
+				</menupopup>
+			</toolbarbutton>
+		</toolbar>
+	</toolbox>
+
+	<vbox id="archivefbOuterBox" flex="1">
+		<vbox id="archivefbTreeOuter" flex="2" persist="height">
+			<tree id="archivefbTree"
+			      onclick="archivefbTreeUI.onClick(event, 2);"
+			      onkeypress="archivefbTreeUI.onKeyPress(event);"
+			      ondragstart="archivefbTreeUI.onDragStart(event);"
+			      ondragover="archivefbTreeUI.onDragOver(event);"
+			      contextmenu="archivefbPopup"
+			      hidecolumnpicker="true"
+			      seltype="multiple"
+			      class="plain" flex="1" />
+		</vbox>
+		<splitter id="archivefbNoteSplitter" class="plain" hidden="true" />
+		<vbox id="archivefbNoteOuter" flex="1" persist="height" hidden="true">
+			<hbox id="archivefbNoteHeader" class="archivefb-header" align="center">
+				<label id="archivefbNoteLabel" flex="1" crop="end" />
+				<spacer flex="1" />
+				<toolbarbutton image="chrome://archivefb/skin/expander.png" tooltiptext="&archivefb.note.opentab;" style="-moz-appearance:none;" oncommand="archivefbNoteService.expand();" />
+				<toolbarbutton class="archivefb-header-exit" tooltiptext="&archivefb.note.close;" oncommand="archivefbNoteService.exit();" />
+			</hbox>
+			<vbox flex="1" style="padding-left: 2px;">
+				<textbox id="archivefbNoteTextbox" multiline="true" class="plain" flex="1" tabindex="1" oninput="archivefbNoteService.change(true);" onkeypress="archivefbNoteService.insertString(event);" />
+			</vbox>
+		</vbox>
+	</vbox>
+
+</window>

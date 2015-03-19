@@ -1,0 +1,51 @@
+<?xml version="1.0" ?>
+
+<?xml-stylesheet href="chrome://global/skin/" type="text/css" ?>
+<?xml-stylesheet href="chrome://archivefb/skin/capture.css" type="text/css" ?>
+
+<!DOCTYPE window SYSTEM "chrome://archivefb/locale/capture.dtd">
+
+<window id="archivefbCaptureWindow"
+        title="&archivefb.capture; - archivefb"
+        xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
+        style="width: 360px;"
+        onload="ARCHIVEFB_initCapture();"
+        onclose="event.preventDefault();archivefbCaptureTask.abort();"
+        windowtype="archivefb">
+
+	<script type="application/x-javascript" src="chrome://archivefb/content/common.js" />
+	<script type="application/x-javascript" src="chrome://archivefb/content/saver.js" />
+	<script type="application/x-javascript" src="chrome://archivefb/content/capture.js" />
+
+	<stringbundleset>
+		<stringbundle id="archivefbCaptureString" src="chrome://archivefb/locale/capture.properties" />
+		<stringbundle id="archivefbOverlayString" src="chrome://archivefb/locale/overlay.properties" />
+	</stringbundleset>
+
+	<textbox id="archivefbCaptureTextbox" readonly="true" />
+
+	<listbox id="archivefbCaptureListbox" rows="1" flex="1" />
+
+	<browser id="archivefbCaptureBrowser" type="content" collapsed="true" />
+
+	<hbox>
+		<toolbarbutton id="archivefbCaptureFilterButton" type="menu" label="&archivefb.capture.filter;" hidden="true">
+			<menupopup>
+				<menuitem type="radio" label="&archivefb.capture.filter.domain;"   oncommand="archivefbCaptureTask.applyFilter('D');" />
+				<menuitem type="radio" label="&archivefb.capture.filter.level;"    oncommand="archivefbCaptureTask.applyFilter('L');" />
+				<menuitem type="radio" label="&archivefb.capture.filter.string;"   oncommand="archivefbCaptureTask.applyFilter('S');" />
+				<menuitem type="radio" label="&archivefb.capture.filter.checkon;"  oncommand="archivefbCaptureTask.applyFilter('N');" checked="true" />
+				<menuitem type="radio" label="&archivefb.capture.filter.checkoff;" oncommand="archivefbCaptureTask.applyFilter('F');" />
+				<menuseparator />
+				<menuitem label="&archivefb.capture.filter.invert;" oncommand="archivefbCaptureTask.applyFilter('I');" />
+			</menupopup>
+		</toolbarbutton>
+		<toolbarseparator hidden="true" />
+		<button id="archivefbCapturePauseButton" label="&archivefb.capture.pause;" oncommand="archivefbCaptureTask.pause();" />
+		<button id="archivefbCaptureStartButton" label="&archivefb.capture.start;" oncommand="archivefbCaptureTask.activate();" hidden="true" />
+		<button id="archivefbCaptureSkipButton"  label="&archivefb.capture.skip;"  oncommand="archivefbCaptureTask.next(true);" disabled="true" />
+		<spacer flex="1" />
+		<button label="&archivefb.capture.abort;" oncommand="archivefbCaptureTask.abort();" />
+	</hbox>
+
+</window>

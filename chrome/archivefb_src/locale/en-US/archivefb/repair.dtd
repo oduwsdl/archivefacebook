@@ -1,0 +1,9 @@
+<!ENTITY archivefb.repair.rdfFile "Restore archivefb.rdf">
+<!ENTITY archivefb.repair.rdfFile.descript "Try this if archivefb tree disappears suddenly.">
+<!ENTITY archivefb.repair.rdfFile.select "Select a backup file for the restoration.">
+<!ENTITY archivefb.repair.rdfFile.file "File">
+<!ENTITY archivefb.repair.rdfFile.time "Time">
+<!ENTITY archivefb.repair.rdfFile.size "Size">
+<!ENTITY archivefb.repair.favicons "Restore favicons in tree">
+<!ENTITY archivefb.repair.favicons.descript "Try this if many favicons in archivefb tree disappear.">
+<!ENTITY archivefb.repair.complete "Completed.">

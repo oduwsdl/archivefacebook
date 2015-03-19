@@ -1,0 +1,31 @@
+<?xml version="1.0" ?>
+
+<?xml-stylesheet href="chrome://global/skin/" type="text/css" ?>
+<?xml-stylesheet href="chrome://archivefb/skin/archivefb.css" type="text/css" ?>
+
+<?xul-overlay href="chrome://archivefb/content/tree.xul"?>
+
+<!DOCTYPE dialog [
+	<!ENTITY % mainDTD   SYSTEM "chrome://archivefb/locale/archivefb.dtd" >
+	%mainDTD;
+	<!ENTITY % outputDTD SYSTEM "chrome://archivefb/locale/output.dtd" >
+	%outputDTD;
+]>
+
+<dialog id="ScrapBookOutputDialog"
+        xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
+        title="&archivefb.tools.output; - ScrapBook"
+        width="380" height="400"
+        onload="archivefbOutputService.init();"
+        ondialogaccept="archivefbOutputService.start();"
+        windowtype="archivefb">
+
+	<script type="application/x-javascript" src="chrome://archivefb/content/output.js" />
+
+	<tree id="archivefbTree" hidecolumnpicker="true" onclick="archivefbOutputService.toggleAllSelection();" flex="1" />
+
+	<checkbox id="ScrapBookOutputOptionA" label="&archivefb.output.option.all;"   style="margin-top:12px;" oncommand="archivefbOutputService.selectAllFolders();" checked="true" />
+	<checkbox id="ScrapBookOutputOptionF" label="&archivefb.output.option.frame;" persist="checked" />
+	<checkbox id="ScrapBookOutputOptionO" label="&archivefb.output.option.open;"  persist="checked" checked="true" />
+
+</dialog>

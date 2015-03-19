@@ -1,0 +1,229 @@
+/* ::::: CAPTURE_DETAIL ::::: */
+
+@import url('chrome://browser/skin/bookmarks/addBookmark.css');
+
+
+/* ::::: TOOLBAR ::::: */
+
+toolbarbutton#archivefbToolbarNewFolder {
+	list-style-image: url('chrome://archivefb/skin/toolbar_create.png');
+}
+
+/*
+toolbarbutton#archivefbToolbarNewFolder dropmarker {
+	display: none;
+}
+*/
+
+toolbarbutton#archivefbToolbarToggle {
+	list-style-image: url('chrome://archivefb/skin/toolbar_toggle.png');
+}
+
+toolbarbutton#archivefbToolbarListView {
+	list-style-image: url('chrome://archivefb/skin/toolbar_listview.png');
+}
+
+toolbarbutton#archivefbToolbarMove {
+	list-style-image: url('chrome://archivefb/skin/toolbar_move.png');
+}
+
+toolbarbutton#mbToolbarButton {
+	list-style-image: url('chrome://archivefb/skin/main_16.png');
+}
+
+.archivefb-create .menu-iconic-icon,
+menuitem#archivefbPopupRenew    .menu-iconic-icon,
+menuitem#archivefbPopupRemove   .menu-iconic-icon,
+menuitem#archivefbPopupProperty .menu-iconic-icon {
+	width : 13px !important;
+	height: 13px !important;
+}
+
+.archivefb-create {
+	list-style-image: url('chrome://archivefb/skin/menu_create.png');
+}
+
+
+/* ::::: POPUP ::::: */
+
+menuitem#archivefbPopupRemove,
+toolbarbutton#archivefbToolbarRemove {
+	list-style-image: url('chrome://archivefb/skin/menu_remove.png');
+}
+
+menuitem#archivefbPopupProperty,
+toolbarbutton#archivefbToolbarProperty {
+	list-style-image: url('chrome://archivefb/skin/menu_property.png');
+}
+
+menuitem#archivefbPopupRenew { list-style-image: url('chrome://archivefb/skin/capture_target_as.png'); }
+
+menuitem[type="radio"][checked="true"] {
+	font-weight: bold;
+}
+
+
+/* ::::: TREE/LIST ::::: */
+
+treechildren::-moz-tree-image(archivefbTreeColTitle, leaf),
+richlistitem image.archivefblist-icon {
+	-moz-image-region: auto !important;
+	list-style-image: url('chrome://archivefb/skin/treeitem.png') !important;
+	width: 16px; height: 16px;
+}
+
+treechildren::-moz-tree-image(archivefbTreeColTitle, note),
+richlistitem.note image.archivefblist-icon {
+	list-style-image: url('chrome://archivefb/skin/treenote.png') !important;
+}
+
+treechildren::-moz-tree-cell-text(marked),
+richlistitem.marked .archivefblist-title {
+	font-weight: bold;
+}
+
+treechildren::-moz-tree-cell-text(combine),
+richlistitem.combine .archivefblist-title {
+	color: blue;
+}
+
+treechildren::-moz-tree-cell-text(bookmark),
+richlistitem.bookmark .archivefblist-title {
+	color: rgb(32,192,32);
+}
+
+treechildren::-moz-tree-cell-text(separator),
+richlistitem.separator .archivefblist-title {
+	color: ThreeDShadow;
+}
+
+treechildren::-moz-tree-cell-text(separator) {
+	margin: 0px 5px;
+}
+
+richlistitem.separator image.archivefblist-icon {
+	display: none;
+}
+
+treechildren::-moz-tree-cell-text(invalid) {
+	color: red;
+	font-weight: bold;
+}
+
+
+/* ::::: LIST ::::: */
+
+richlistitem {
+	border-bottom: 1px dotted ThreeDShadow;
+	padding: 3px 2px;
+}
+
+richlistitem[selected="true"] {
+	background-color: transparent;
+	background-image: url('chrome://archivefb/skin/list_selected.png');
+}
+
+richlistitem .archivefblist-source {
+	color: #707070;
+}
+
+richlistitem .archivefblist-comment {
+	margin-top: 3px;
+}
+
+richlistitem .archivefblist-comment[value=""] {
+	display: none;
+}
+
+#archivefbListHeader toolbarbutton#archivefbListMoveUpButton {
+	list-style-image: url('chrome://archivefb/skin/expander_up.png');
+}
+
+#archivefbListHeader toolbarbutton#archivefbListPickerButton {
+	list-style-image: url('chrome://archivefb/skin/list_picker.png');
+}
+
+#archivefbListHeader toolbarbutton[type="menu"] dropmarker {
+	display: none;
+}
+
+
+/* ::::: HEADER ::::: */
+
+sidebarheader {
+	padding: 3px;
+}
+
+.archivefb-header {
+	color: InfoText;
+	background-color: InfoBackground;
+	border: 1px solid ThreeDShadow;
+	padding: 3px;
+}
+
+sidebarheader toolbarbutton,
+.archivefb-header toolbarbutton {
+	padding: 0px;
+	margin: 0px;
+	-moz-appearance: none;
+}
+
+sidebarheader toolbarbutton image,
+.archivefb-header toolbarbutton image {
+	padding: 0px 1px;
+	margin: 0px;
+}
+
+.archivefb-header-exit {
+	list-style-image: url('chrome://archivefb/skin/exit.png');
+}
+
+.archivefb-header-locate {
+	list-style-image: url('chrome://archivefb/skin/expander_left.png');
+}
+
+.archivefb-header-red {
+	background-color: #FFE4C7;
+	border: 1px solid #FF8099;
+}
+
+
+/* ::::: SEARCH_BUTTON ::::: */
+
+#archivefbSearchImage {
+	max-width : 24px !important;
+	max-height: 16px !important;
+	-moz-margin-end : 3px;
+	background-image: url('chrome://archivefb/skin/dropdown.png');
+	cursor: default;
+}
+
+
+/* ::::: COMMON ::::: */
+
+treechildren::-moz-tree-drop-feedback {
+	width: 10000px;
+	margin-left: -100px;
+}
+
+tab {
+	min-width: 80px;
+	text-align: center;
+}
+
+listbox .listcell-icon {
+	width: 16px; height: 16px;
+}
+
+listbox .text-right {
+	text-align:right; padding-right:10px;
+}
+
+browser {
+	background-color: #FFFFFF;
+}
+
+textbox[class="plain"] {
+	background-color: -moz-Field;
+}
+

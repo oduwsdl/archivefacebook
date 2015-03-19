@@ -1,0 +1,59 @@
+<?xml version="1.0" ?>
+
+<?xml-stylesheet href="chrome://global/skin/" type="text/css" ?>
+
+<!DOCTYPE wizard [
+	<!ENTITY % mainDTD   SYSTEM "chrome://archivefb/locale/archivefb.dtd" >
+	%mainDTD;
+	<!ENTITY % repairDTD SYSTEM "chrome://archivefb/locale/repair.dtd" >
+	%repairDTD;
+]>
+
+<wizard id="archivefbRepairWizard"
+        xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
+        title="&archivefb.tools.repair; - ScrapBook"
+        windowtype="archivefb">
+
+	<script type="application/x-javascript" src="chrome://archivefb/content/common.js" />
+	<script type="application/x-javascript" src="chrome://archivefb/content/customTree.js" />
+	<script type="application/x-javascript" src="chrome://archivefb/content/repair.js" />
+	<script type="application/x-javascript" src="chrome://archivefb/content/trade.js" />
+	<script type="application/x-javascript" src="chrome://archivefb/content/mbService.js" />
+
+	<keyset>
+		<key keycode="VK_F5" oncommand="window.location.reload();" />
+	</keyset>
+
+	<wizardpage pageid="archivefbRepairStartPage" label="&archivefb.tools.repair;" onpageshow="archivefbRepair.initStartPage();" next="archivefbRepairRDF1">
+		<radiogroup id="archivefbRepairRadioGroup">
+			<radio label="&archivefb.repair.rdfFile;"  oncommand="archivefbRepair.initStartPage();" />
+			<description flex="1" style="margin-left:30px;margin-bottom:20px;">&archivefb.repair.rdfFile.descript;</description>
+			<radio label="&archivefb.repair.favicons;" oncommand="archivefbRepair.initStartPage();" />
+			<description flex="1" style="margin-left:30px;margin-bottom:20px;">&archivefb.repair.favicons.descript;</description>
+		</radiogroup>
+	</wizardpage>
+
+	<wizardpage pageid="archivefbRepairRDF1"
+	            next="archivefbRepairRDF2"
+	            label="&archivefb.repair.rdfFile;"
+	            description="&archivefb.repair.rdfFile.select;"
+	            onpageshow="archivefbRepair.initRestoreRDF();">
+		<tree id="archivefbRepairTree" seltype="single" hidecolumnpicker="true" flex="1">
+			<treecols>
+				<treecol id="archivefbRepairTreecolFile" label="&archivefb.repair.rdfFile.file;" flex="2" />
+				<treecol id="archivefbRepairTreecolTime" label="&archivefb.repair.rdfFile.time;" flex="2" />
+				<treecol id="archivefbRepairTreecolSize" label="&archivefb.repair.rdfFile.size;" flex="1" />
+			</treecols>
+			<treechildren />
+		</tree>
+	</wizardpage>
+
+	<wizardpage pageid="archivefbRepairRDF2" label="&archivefb.repair.rdfFile;" onpageshow="archivefbRepair.execRestoreRDF();">
+		<label id="archivefbRepairRDF2Label" value="&archivefb.repair.complete;" readonly="true" />
+	</wizardpage>
+
+	<wizardpage pageid="archivefbRepairFavicons" label="&archivefb.repair.favicons;" onpageshow="archivefbRepair.restoreFavicons();">
+		<textbox id="archivefbRepairFaviconsTextbox" readonly="true" />
+	</wizardpage>
+
+</wizard>

@@ -1,0 +1,25 @@
+/* ::::: NOTE ::::: */
+
+toolbar#archivefbNoteToolbar {
+	border-top: 1px solid ThreeDShadow;
+	padding: 1px;
+}
+
+toolbarbutton#archivefbNoteToolbarS {
+	list-style-image: url('chrome://archivefb/skin/edit_save.png');
+}
+
+toolbarbutton#archivefbNoteToolbarH {
+	list-style-image: url('chrome://archivefb/skin/note_htmlview1.png');
+}
+
+toolbarbutton#archivefbNoteToolbarN {
+	list-style-image: url('chrome://archivefb/skin/note_htmlview0.png');
+}
+
+image#archivefbNoteImage {
+	width: 16px;
+	height: 16px;
+	margin-left: 3px;
+}
+

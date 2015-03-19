@@ -1,0 +1,187 @@
+<?xml version="1.0"?>
+
+<?xml-stylesheet href="chrome://archivefb/skin/overlay.css" type="text/css"?>
+
+<!DOCTYPE overlay [
+	<!ENTITY % overlayDTD SYSTEM "chrome://archivefb/locale/overlay.dtd">
+	%overlayDTD;
+	<!ENTITY % editorDTD  SYSTEM "chrome://archivefb/locale/editor.dtd">
+	%editorDTD;
+]>
+
+<overlay id="archivefbtasksOverlay"
+         xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+         xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
+
+	<script type="application/x-javascript" src="chrome://archivefb/content/common.js" />
+	<script type="application/x-javascript" src="chrome://archivefb/content/saver.js" />
+	<script type="application/x-javascript" src="chrome://archivefb/content/editor.js" />
+	<script type="application/x-javascript" src="chrome://archivefb/content/highlighter.js" />
+	<script type="application/x-javascript" src="chrome://archivefb/content/overlay.js" />
+
+	<stringbundleset id="stringbundleset">
+		<stringbundle id="archivefbOverlayString" src="chrome://archivefb/locale/overlay.properties" />
+	</stringbundleset>
+
+	<broadcasterset id="mainBroadcasterSet">
+		<broadcaster id="viewarchivefbSidebar"
+		             type="checkbox" autoCheck="false"
+		             label="archivefb"
+		             group="sidebar" sidebartitle="archivefb"
+		             sidebarurl="chrome://archivefb/content/archivefb.xul"
+		             onclick="if (event.button == 1) archivefbUtils.openManageWindow();"
+		             oncommand="toggleSidebar('viewarchivefbSidebar');" />
+	</broadcasterset>
+
+	<keyset id="mainKeyset">
+		<key id="key_openarchivefbSidebar"  key="&archivefb.key.sidebar;"    modifiers="alt" command="viewarchivefbSidebar" />
+		<key id="key_archivefbCapture"      key="&archivefb.key.capture;"    modifiers="accel shift" oncommand="archivefbBrowserOverlay.execCapture(0, null, false, 'urn:archivefb:root');" />
+		<key id="key_archivefbCaptureAs"    key="&archivefb.key.capture.as;" modifiers="accel shift" oncommand="archivefbBrowserOverlay.execCapture(0, null, true , 'urn:archivefb:root');" />
+		<key id="key_BookmarkWitharchivefb" key="&archivefb.key.bookmark;"   modifiers="accel shift" oncommand="archivefbBrowserOverlay.execBookmark('archivefbContextMenu3', 'urn:archivefb:root', 0, null, true);" />
+	</keyset>
+
+	<menupopup id="viewSidebarMenu">
+		<menuitem observes="viewarchivefbSidebar" key="key_openarchivefbSidebar" />
+	</menupopup>
+
+	<menubar id="main-menubar">
+		<menu id="archivefbMenu" label="ArchiveFB"
+		      datasources="rdf:null" ref="urn:archivefb:root" flags="dont-test-empty"
+		      insertafter="bookmarks-menu bookmarksMenu" accesskey="&archivefb.key.menubar;"
+		      oncommand="archivefbMenuHandler.onClick(event);"
+		      onclick="if (event.button == 1) archivefbMenuHandler.onClick(event);">
+			<menupopup onpopupshowing="archivefbMenuHandler.onPopupShowing(event, this);">
+				<menuitem id="archivefbMenubarItem1" key="key_archivefbCapture" />
+				<!--<menuitem id="archivefbMenubarItem2" key="key_archivefbCaptureAs" />
+				<menuitem id="archivefbMenubarItem3" key="key_BookmarkWitharchivefb" label="&archivefb.capture.bookmark;..." oncommand="archivefbBrowserOverlay.execBookmark('archivefbContextPicking'); event.stopPropagation();" />
+				<menuitem id="archivefbMenubarItem4" label="&archivefb.capture.alltabs;..." oncommand="archivefbMenuHandler.execCaptureAllTabs(); event.stopPropagation();" />-->
+				<menuitem id="archivefbMenubarItem5" sblabel="&archivefb.sidebar;" observes="viewarchivefbSidebar" key="key_openarchivefbSidebar" />
+				<menuseparator />
+			</menupopup>
+			<template>
+				<rule iscontainer="true">
+					<menupopup>
+						<menu uri="rdf:*" class="menu-iconic bookmark-item" label="rdf:http://amb.vis.ne.jp/mozilla/archivefb-rdf#title">
+							<menupopup />
+						</menu>
+					</menupopup>
+				</rule>
+				<rule rdf:type="http://home.netscape.com/NC-rdf#BookmarkSeparator">
+					<menupopup>
+						<menuseparator uri="rdf:*" />
+					</menupopup>
+				</rule>
+				<rule>
+					<menupopup>
+						<menuitem uri="rdf:*" class="menuitem-iconic bookmark-item archivefb-item"
+						          label="rdf:http://amb.vis.ne.jp/mozilla/archivefb-rdf#title" 
+						          image="rdf:http://amb.vis.ne.jp/mozilla/archivefb-rdf#icon"
+						          archivefbtype="rdf:http://amb.vis.ne.jp/mozilla/archivefb-rdf#type" />
+					</menupopup>
+				</rule>
+			</template>
+		</menu>
+	</menubar>
+
+	<menupopup id="menu_ToolsPopup">
+		<menuitem id="archivefbToolsMenu" key="key_openarchivefbSidebar" observes="viewarchivefbSidebar" insertafter="devToolsSeparator" />
+	</menupopup>
+
+	<popup id="contentAreaContextMenu">
+		<menuseparator id="archivefbContextMenu0" />
+		<menu     id="archivefbContextMenu1" class="menu-iconic     archivefb-capture-partial" label="&archivefb.capture.partial;"       oncommand="archivefbBrowserOverlay.execCapture(1, true , false, event.originalTarget.id);" onclick="archivefbBrowserOverlay.onMiddleClick(event,1);"><menupopup onpopupshowing="archivefbBrowserOverlay.buildPopup(this);" onpopuphiding="archivefbBrowserOverlay.destroyPopup(this);" /></menu>
+		<menuitem id="archivefbContextMenu2" class="menuitem-iconic archivefb-capture-partial" label="&archivefb.capture.partial.as;..." oncommand="archivefbBrowserOverlay.execCapture(1, true , true , event.originalTarget.id);" />
+		<menu     id="archivefbContextMenu3" class="menu-iconic     archivefb-capture-entire"  label="&archivefb.capture.entire;"        oncommand="archivefbBrowserOverlay.execCapture(2, false, false, event.originalTarget.id);" onclick="archivefbBrowserOverlay.onMiddleClick(event,3);"><menupopup onpopupshowing="archivefbBrowserOverlay.buildPopup(this);" onpopuphiding="archivefbBrowserOverlay.destroyPopup(this);" /></menu>
+		<menuitem id="archivefbContextMenu4" class="menuitem-iconic archivefb-capture-entire"  label="&archivefb.capture.entire.as;..."  oncommand="archivefbBrowserOverlay.execCapture(2, false, true , event.originalTarget.id);" />
+		<menu     id="archivefbContextMenu5" class="menu-iconic     archivefb-capture-frame"   label="&archivefb.capture.frame;"         oncommand="archivefbBrowserOverlay.execCapture(2, true , false, event.originalTarget.id);" onclick="archivefbBrowserOverlay.onMiddleClick(event,5);"><menupopup onpopupshowing="archivefbBrowserOverlay.buildPopup(this);" onpopuphiding="archivefbBrowserOverlay.destroyPopup(this);" /></menu>
+		<menuitem id="archivefbContextMenu6" class="menuitem-iconic archivefb-capture-frame"   label="&archivefb.capture.frame.as;..."   oncommand="archivefbBrowserOverlay.execCapture(2, true , true , event.originalTarget.id);" />
+		<menu     id="archivefbContextMenu7" class="menu-iconic     archivefb-capture-target"  label="&archivefb.capture.target;"        oncommand="archivefbBrowserOverlay.execCaptureTarget(false, event.originalTarget.id);"     onclick="archivefbBrowserOverlay.onMiddleClick(event,7);"><menupopup onpopupshowing="archivefbBrowserOverlay.buildPopup(this);" onpopuphiding="archivefbBrowserOverlay.destroyPopup(this);" /></menu>
+		<menuitem id="archivefbContextMenu8" class="menuitem-iconic archivefb-capture-target"  label="&archivefb.capture.target.as;..."  oncommand="archivefbBrowserOverlay.execCaptureTarget(true,  event.originalTarget.id);"     />
+		<menu     id="archivefbContextSubmenu" label="archivefb" hidden="true"><menupopup /></menu>
+		<menu id="archivefbContextMenu9" label="&archivefb.capture.bookmark;" oncommand="archivefbBrowserOverlay.execBookmark(event.originalTarget.id);">
+			<menupopup onpopupshowing="archivefbBrowserOverlay.buildPopup(this);" onpopuphiding="archivefbBrowserOverlay.destroyPopup(this);" />
+		</menu>
+	</popup>
+
+	<toolbarpalette id="BrowserToolbarPalette">
+		<toolbarbutton id="archivefb-button"
+		               tooltiptext="archivefb"
+		               observes="viewarchivefbSidebar"
+		               class="toolbarbutton-1 chromeclass-toolbar-additional"
+		               ondragenter="archivefbBrowserOverlay.handleDragEvents(event);"
+		               ondragover="archivefbBrowserOverlay.handleDragEvents(event);" />
+	</toolbarpalette>
+
+	<vbox id="appcontent">
+		<toolbox id="archivefbToolbox" hidden="true">
+			<toolbar id="archivefbInfobar" align="center" hidden="true" autoshow="false" persist="autoshow">
+				<image src="chrome://archivefb/skin/info.png" />
+				<label id="archivefbInfoSource" crop="end" flex="1" />
+				<toolbarbutton id="archivefbInfoHome" image="chrome://archivefb/skin/info_home0.png" label="&archivefb.info.home;"    oncommand="archivefbInfoViewer.loadFile('index.html');" />
+				<toolbarbutton id="archivefbInfoSite" image="chrome://archivefb/skin/info_link0.png" label="&archivefb.info.sitemap;" oncommand="archivefbInfoViewer.loadFile('sitemap.xml');" />
+				<toolbarbutton image="chrome://archivefb/skin/expander_left.png" tooltiptext="&archivefb.locate;" oncommand="archivefbBrowserOverlay.execLocate(archivefbBrowserOverlay.resource);" />
+			</toolbar>
+			<toolbar id="archivefbEditor" align="center" hidden="true" autoshow="true" persist="autoshow" style="background-attachment: scroll !important;">
+			    <image id="archivefbEditIcon" style="width:16px;height:16px;" />
+				<textbox id="archivefbEditTitle"   oninput="archivefbPageEditor.changed2 = true;" onkeypress="if (event.keyCode == 13) archivefbPageEditor.saveResource();" onclick="if (event.button == 1) archivefbPageEditor.selection2Title(this);" flex="1" style="padding:2px;max-width:220px;" />
+				<toolbarbutton image="chrome://archivefb/skin/edit_comment.png" tooltiptext="&archivefb.edit.comment;" oncommand="archivefbPageEditor.toggleComment();" />
+				<textbox id="archivefbEditComment" spellcheck="true" oninput="archivefbPageEditor.onInputComment(this.value);" onkeypress="if (event.keyCode == 13) if (!archivefbPageEditor.multiline) archivefbPageEditor.saveResource();" flex="3" style="padding:2px;" />
+				<spacer id="archivefbEditSpacer" flex="0" />
+				<toolbarbutton id="archivefbHighlighter" type="menu-button" persist="color" image="chrome://archivefb/skin/edit_highlighter.png" tooltiptext="&archivefb.highlighter;" oncommand="if (event.originalTarget.localName == 'toolbarbutton') archivefbPageEditor.highlight();" accesskey="Q">
+					<menupopup onpopupshowing="archivefbHighlighter.updatePopup();">
+						<menuitem id="archivefbHighlighter1" type="radio" label="&archivefb.highlighter;1" oncommand="archivefbPageEditor.highlight(1);" />
+						<menuitem id="archivefbHighlighter2" type="radio" label="&archivefb.highlighter;2" oncommand="archivefbPageEditor.highlight(2);" />
+						<menuitem id="archivefbHighlighter3" type="radio" label="&archivefb.highlighter;3" oncommand="archivefbPageEditor.highlight(3);" />
+						<menuitem id="archivefbHighlighter4" type="radio" label="&archivefb.highlighter;4" oncommand="archivefbPageEditor.highlight(4);" />
+					</menupopup>
+				</toolbarbutton>
+				<toolbarbutton id="archivefbEditAnnotation" type="menu-button" tooltiptext="&archivefb.edit.sticky.create;" image="chrome://archivefb/skin/edit_annotation.png" accesskey="A" oncommand="if (event.originalTarget.localName == 'toolbarbutton') archivefbAnnotationService.createSticky();">
+					<menupopup onpopupshowing="this.firstChild.nextSibling.setAttribute('disabled', !archivefbPageEditor.item);">
+						<menuitem label="&archivefb.edit.attach.link;" oncommand="archivefbAnnotationService.attach('L',this.label);" />
+						<menuitem label="&archivefb.edit.attach.file;" oncommand="archivefbAnnotationService.attach('F',this.label);" />
+						<menuitem label="&archivefb.edit.inline.add;"  oncommand="archivefbAnnotationService.addInline();" />
+						<menuseparator />
+						<menuitem label="&archivefb.edit.sticky.create;"  oncommand="archivefbAnnotationService.createSticky();" />
+					</menupopup>
+				</toolbarbutton>
+				<toolbarbutton id="archivefbEditCutter" type="menu-button" image="chrome://archivefb/skin/edit_cutter.png" tooltiptext="&archivefb.edit.cutter;" oncommand="if (event.originalTarget.localName == 'toolbarbutton') archivefbPageEditor.cutter();">
+					<menupopup>
+						<menuitem label="&archivefb.edit.remove.script;" oncommand="archivefbPageEditor.removeElementsByTagName('script');" />
+						<menuitem label="&archivefb.edit.remove.iframe;" oncommand="archivefbPageEditor.removeElementsByTagName('iframe');" />
+						<menuseparator />
+						<menuitem label="&archivefb.highlighter.remove.all;" oncommand="archivefbPageEditor.removeAllSpan('linemarker-marked-line');" />
+						<menuitem label="&archivefb.highlighter.remove;"     oncommand="archivefbPageEditor.removeHighlights();" />
+						<menuseparator />
+						<menuitem label="&archivefb.edit.cutter;" oncommand="archivefbPageEditor.cutter();" />
+					</menupopup>
+				</toolbarbutton>
+				<toolbarbutton id="archivefbEditEraser" tooltiptext="&archivefb.edit.eraser;" image="chrome://archivefb/skin/edit_eraser.png" oncommand="archivefbDOMEraser.init(this.checked ? 2 : 1);" type="checkbox" autoCheck="false" />
+				<toolbarbutton id="archivefbEditUndo"   tooltiptext="&archivefb.edit.undo;"   image="chrome://archivefb/skin/edit_undo.png"   oncommand="archivefbPageEditor.undo();" accesskey="Z" />
+				<toolbarbutton id="archivefbEditSave"   tooltiptext="&archivefb.edit.save;"   image="chrome://archivefb/skin/edit_save.png"   oncommand="archivefbPageEditor.saveOrCapture();" onclick="if (event.button == 1) archivefbPageEditor.saveOrCapture(true);" accesskey="S" />
+				<toolbarbutton image="chrome://archivefb/skin/expander_left.png" tooltiptext="&archivefb.locate;" oncommand="archivefbBrowserOverlay.execLocate(archivefbBrowserOverlay.resource);" />
+			</toolbar>
+		</toolbox>
+	</vbox>
+
+	<statuarchivefbar id="status-bar">
+		<statusbarpanel label="" id="ArchiveFBStatusPanelText" style="display: none;" /><!-- Required, as no statusbar-menu-icon-text exists -->
+		<statusbarpanel id="archivefbStatusPanel"
+		                class="statusbarpanel-menu-iconic"
+		                src="chrome://archivefb/skin/main.png"
+		                style="padding: 0px 2px;"
+		                onclick="if (event.button == 2) document.getElementById('archivefbStatusPopup').showPopup(); else if (event.button == 1) toggleSidebar('viewarchivefbSidebar'); event.stopPropagation();">
+			<menupopup id="archivefbStatusPopup" onpopupshowing="archivefbInfoViewer.onPopupShowing(event);" onclick="event.stopPropagation();">
+				<menuitem id="archivefbStatusPopupSP" label="Stop Processing" command="alert('foo');" onclick="alert('bar');" />
+				<menuitem id="archivefbStatusPopupR" label="&archivefb.renew;..."     oncommand="archivefbInfoViewer.renew(true);" onclick="if (event.button == 1) archivefbInfoViewer.renew(false);" class="menuitem-iconic archivefb-capture-target" />
+				<menuitem id="archivefbStatusPopupS" label="&archivefb.source;"       oncommand="archivefbInfoViewer.openSourceURL(false);" onclick="if (event.button == 1) archivefbInfoViewer.openSourceURL(true);document.getElementById('archivefbStatusPopup').hidePopup();" />
+				<menuseparator />
+				<menuitem id="archivefbStatusPopupD" label="&archivefb.indicators;"   type="checkbox" oncommand="archivefbInfoViewer.toggleIndicator(this.getAttribute('checked'));" persist="checked" />
+				<menuitem id="archivefbStatusPopupI" label="&archivefb.toolbar.info;" type="checkbox" oncommand="archivefbInfoViewer.toggle();" />
+				<menuitem id="archivefbStatusPopupE" label="&archivefb.toolbar.edit;" type="checkbox" oncommand="archivefbPageEditor.toggle();" />
+				<menuseparator />
+				<menuitem id="archivefbEditBefore" label="&archivefb.editbefore;" type="checkbox" autocheck="false" oncommand="this.getAttribute('checked') == 'false' ? archivefbPageEditor.init() : archivefbPageEditor.exit(true);" />
+			</menupopup>
+		</statusbarpanel>
+	</statuarchivefbar>
+
+</overlay>

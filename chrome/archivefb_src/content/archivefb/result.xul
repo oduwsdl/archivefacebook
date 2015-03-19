@@ -1,0 +1,66 @@
+<?xml version="1.0" ?>
+
+<?xml-stylesheet href="chrome://global/skin/" type="text/css" ?>
+<?xml-stylesheet href="chrome://archivefb/skin/archivefb.css" type="text/css" ?>
+
+<!DOCTYPE window [
+	<!ENTITY % propDTD SYSTEM "chrome://archivefb/locale/property.dtd" >
+	%propDTD;
+	<!ENTITY % treeDTD SYSTEM "chrome://archivefb/locale/tree.dtd" >
+	%treeDTD;
+	<!ENTITY % editDTD SYSTEM "chrome://archivefb/locale/editor.dtd" >
+	%editDTD;
+]>
+
+<window id="archivefbResultWindow"
+        title="ScrapBook"
+        xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
+        onload="ARCHIVEFB_initFT('SEARCH');">
+
+	<script type="application/x-javascript" src="chrome://archivefb/content/common.js" />
+	<script type="application/x-javascript" src="chrome://archivefb/content/fulltext.js" />
+	<script type="application/x-javascript" src="chrome://archivefb/content/customTree.js" />
+
+	<stringbundleset>
+		<stringbundle id="archivefbCacheString" src="chrome://archivefb/locale/fulltext.properties" />
+	</stringbundleset>
+
+	<popupset>
+		<menupopup id="archivefbPopup">
+			<menuitem id="archivefbPopupOpen"       label="&archivefb.open;"        oncommand="archivefbSearchResult.forward('O');" />
+			<menuitem id="archivefbPopupOpenNewTab" label="&archivefb.open.newtab;" oncommand="archivefbSearchResult.forward('T');" />
+			<menuitem id="archivefbPopupOpenLocate" label="&archivefb.locate;"      oncommand="archivefbSearchResult.forward('L');" />
+			<menuseparator />
+			<menuitem id="archivefbPopupProperty" class="menuitem-iconic" label="&archivefb.property;" oncommand="archivefbSearchResult.forward('P');" />
+		</menupopup>
+	</popupset>
+
+	<hbox id="archivefbResultHeader" class="archivefb-header" align="center">
+		<label crop="end" />
+		<label crop="end" value="&archivefb.prop.folder;: " style="color: blue;" hidden="true" />
+		<spacer flex="1" />
+		<toolbarbutton class="archivefb-header-locate" tooltiptext="&archivefb.locate;" oncommand="archivefbSearchResult.forward('L');" />
+		<toolbarbutton class="archivefb-header-exit"   oncommand="ARCHIVEFB_exitResult();" />
+	</hbox>
+
+	<tree id="archivefbTree"
+	      context="archivefbPopup"
+	      seltype="single"
+	      onselect="archivefbSearchResult.forward();"
+	      class="plain"
+	      style="height:160px;">
+		<treecols>
+			<treecol id="archivefbTreeColTitle"   label="&archivefb.prop.title;"   flex="3" /><splitter class="tree-splitter" />
+			<treecol id="archivefbTreeColContent" label="&archivefb.prop.content;" flex="5" /><splitter class="tree-splitter" />
+			<treecol id="archivefbTreeColComment" label="&archivefb.prop.comment;" flex="2" /><splitter class="tree-splitter" />
+			<treecol id="archivefbTreeColFolder"  label="&archivefb.prop.folder;"  flex="1" />
+			<treecol id="archivefbTreeColName"    label="HTML" flex="1" hidden="true" />
+		</treecols>
+		<treechildren />
+	</tree>
+
+	<splitter />
+
+	<browser id="archivefbBrowser" type="content-primary" flex="1" onload="archivefbSearchResult.onDocumentLoad(event);" />
+
+</window>

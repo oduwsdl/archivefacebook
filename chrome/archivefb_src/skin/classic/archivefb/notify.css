@@ -1,0 +1,41 @@
+/* ::::: NOTIFIER ::::: */
+
+#archivefbNotifierBox {
+	border: 2px solid #7B969C;
+	min-height: 50px;
+}
+
+#archivefbNotifierIconBox {
+	margin-left : 4px;
+	margin-right: 6px;
+	min-height: 46px;
+}
+
+#archivefbNotifierTextBox {
+	padding-right: 10px;
+	padding-top  : 5px;
+}
+
+#archivefbNotifierIcon {
+	width : 16px;
+	height: 16px;
+}
+
+#archivefbNotifierTitle {
+	font-weight: bold;
+}
+
+#archivefbNotifierText,
+#archivefbNotifierTextAll {
+	margin-right: 6px;
+	cursor: pointer;
+	color: #1455D6;
+	text-decoration: underline;
+}
+
+#archivefbNotifierText:hover:active,
+#archivefbNotifierTextAll:hover:active {
+	color: #424F63;
+}
+
+

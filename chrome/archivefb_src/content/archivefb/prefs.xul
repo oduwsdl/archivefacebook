@@ -1,0 +1,140 @@
+<?xml version="1.0"?>
+
+<?xml-stylesheet href="chrome://global/skin/" type="text/css"?>
+<?xml-stylesheet href="chrome://archivefb/skin/prefs.css" type="text/css"?>
+<?xml-stylesheet href="chrome://mozapps/content/preferences/preferences.css"?>
+<?xml-stylesheet href="chrome://browser/skin/preferences/preferences.css"?>
+
+<!DOCTYPE prefwindow [
+	<!ENTITY % mainDTD SYSTEM "chrome://archivefb/locale/archivefb.dtd">
+	%mainDTD;
+	<!ENTITY % treeDTD SYSTEM "chrome://archivefb/locale/tree.dtd">
+	%treeDTD;
+	<!ENTITY % prefDTD SYSTEM "chrome://archivefb/locale/prefs.dtd">
+	%prefDTD;
+	<!ENTITY % editDTD SYSTEM "chrome://archivefb/locale/editor.dtd">
+	%editDTD;
+]>
+
+<prefwindow id="archivefbPrefWindow"
+            xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
+            title="ScrapBook &archivefb.tools.options;"
+            style="width: 40em;"
+            onload="archivefbPrefWindow.init();">
+
+	<prefpane id="mainPane" label="&archivefb.prefs.main;" flex="1">
+		<preferences>
+			<preference id="archivefb.ui.contextMenu"    name="archivefb.ui.contextMenu"    type="bool" />
+			<preference id="archivefb.ui.contextSubMenu" name="archivefb.ui.contextSubMenu" type="bool" />
+			<preference id="archivefb.ui.folderList.maxEntries" name="archivefb.ui.folderList.maxEntries" type="int" />
+			<preference id="archivefb.ui.bookmarkMenu"   name="archivefb.ui.bookmarkMenu"   type="bool" />
+			<preference id="archivefb.ui.menuBar"        name="archivefb.ui.menuBar"        type="bool" />
+			<preference id="archivefb.ui.menuBar.icon"   name="archivefb.ui.menuBar.icon"   type="bool" />
+			<preference id="archivefb.ui.toolsMenu"      name="archivefb.ui.toolsMenu"      type="bool" />
+			<preference id="archivefb.ui.statusBar"      name="archivefb.ui.statusBar"      type="bool" />
+		</preferences>
+		<checkbox preference="archivefb.ui.contextMenu"    label="&archivefb.prefs.ui.contextMenu;"
+		          onsyncfrompreference="archivefbPrefWindow.updateGroupedUI('archivefb.ui.contextMenu', 'contextmenu');" />
+		<checkbox preference="archivefb.ui.contextSubMenu" label="&archivefb.prefs.ui.contextSubMenu; *" class="indent" group="contextmenu" />
+		<checkbox preference="archivefb.ui.bookmarkMenu"   label="&archivefb.prefs.ui.bookmarkMenu;"     class="indent" group="contextmenu" />
+		<hbox align="center">
+			<label value="&archivefb.prefs.ui.folderList.maxEntries.1;" class="indent" />
+			<textbox preference="archivefb.ui.folderList.maxEntries" type="number" size="2" max="99" />
+			<label value="&archivefb.prefs.ui.folderList.maxEntries.2;" />
+		</hbox>
+		<checkbox preference="archivefb.ui.menuBar"        label="&archivefb.prefs.ui.menuBar;"
+		          onsyncfrompreference="archivefbPrefWindow.updateGroupedUI('archivefb.ui.menuBar', 'menubar');" />
+		<checkbox preference="archivefb.ui.menuBar.icon"   label="&archivefb.prefs.ui.menuBar.icon; *"   class="indent" group="menubar" />
+		<checkbox preference="archivefb.ui.toolsMenu" label="&archivefb.prefs.ui.toolsMenu;" />
+		<checkbox preference="archivefb.ui.statusBar" label="&archivefb.prefs.ui.statusBar;" />
+		<description>* &archivefb.prefs.restart;</description>
+	</prefpane>
+
+	<prefpane id="tabsPane" label="&archivefb.prefs.tabs;" flex="1">
+		<preferences>
+			<preference id="archivefb.tabs.open"         name="archivefb.tabs.open"         type="bool" />
+			<preference id="archivefb.tabs.openSource"   name="archivefb.tabs.openSource"   type="bool" />
+			<preference id="archivefb.tabs.combinedView" name="archivefb.tabs.combinedView" type="bool" />
+			<preference id="archivefb.tabs.searchResult" name="archivefb.tabs.searchResult" type="bool" />
+			<preference id="archivefb.tabs.note"         name="archivefb.tabs.note"         type="bool" />
+		</preferences>
+		<description value="&archivefb.prefs.tabs.tips;:" />
+		<checkbox preference="archivefb.tabs.open"         label="&archivefb.open;" />
+		<checkbox preference="archivefb.tabs.openSource"   label="&archivefb.open.source;" />
+		<checkbox preference="archivefb.tabs.combinedView" label="&archivefb.folder.combine;" />
+		<checkbox preference="archivefb.tabs.searchResult" label="&archivefb.search.fulltext;" />
+		<checkbox preference="archivefb.tabs.note"         label="&archivefb.prefs.tabs.note;" />
+	</prefpane>
+
+	<prefpane id="editPane" label="&archivefb.prefs.edit;" flex="1">
+		<groupbox>
+			<caption label="&archivefb.highlighter;" />
+			<hbox id="hlTemplate" align="center">
+				<label />
+				<label value="Firefox, rediscover the web" />
+				<spacer flex="1" />
+				<button label="&archivefb.button.customize;..." hlumber="0"
+				        oncommand="archivefbPrefWindow.hlCustomize(this.getAttribute('hlnumber'));" />
+			</hbox>
+		</groupbox>
+	</prefpane>
+
+	<prefpane id="organizePane" label="&archivefb.prefs.organize;" flex="1">
+		<preferences>
+			<preference id="archivefb.data.default"      name="archivefb.data.default"      type="bool" />
+			<preference id="archivefb.data.path"         name="archivefb.data.path"         type="file" />
+			<preference id="archivefb.multibook.enabled" name="archivefb.multibook.enabled" type="bool" />
+			<preference id="archivefb.confirmDelete"     name="archivefb.confirmDelete"     type="bool" />
+			<preference id="archivefb.tree.autoCollapse" name="archivefb.tree.autoCollapse" type="bool" />
+			<preference id="archivefb.tree.unshift"      name="archivefb.tree.unshift"      type="bool" />
+		</preferences>
+		<groupbox>
+			<caption id="archivefbDataCaption" label="&archivefb.prefs.data;" />
+			<radiogroup id="archivefbDataDefault"
+			            preference="archivefb.data.default"
+			            onsyncfrompreference="archivefbPrefWindow.updateDataUI();">
+				<radio label="&archivefb.prefs.data.default;" value="true" />
+				<hbox>
+					<radio label="&archivefb.prefs.data.custom;" value="false" />
+					<filefield id="archivefbDataPath" flex="1" />
+					<button id="archivefbDataButton"
+					        label="&archivefb.button.browse;..." label2="&archivefb.prefs.data.tips;"
+					        oncommand="archivefbPrefWindow.selectFolder(this.getAttribute('label2'));" />
+				</hbox>
+			</radiogroup>
+			<separator />
+			<checkbox id="archivefbMultiBookEnabled"
+			          preference="archivefb.multibook.enabled"
+			          label="&archivefb.prefs.multibook.enabled;"
+			          onsyncfrompreference="archivefbPrefWindow.updateDataUI();" />
+			<description class="indent">&archivefb.prefs.multibook.tips;</description>
+		</groupbox>
+		<checkbox preference="archivefb.confirmDelete"     label="&archivefb.prefs.confirmDelete;" />
+		<checkbox preference="archivefb.tree.autoCollapse" label="&archivefb.prefs.tree.autoCollapse;" />
+		<hbox align="center">
+			<label value="&archivefb.prefs.tree.unshift;" />
+			<menulist preference="archivefb.tree.unshift">
+				<menupopup>
+					<menuitem value="true"  label="&archivefb.prefs.tree.unshift.top;" />
+					<menuitem value="false" label="&archivefb.prefs.tree.unshift.bottom;" />
+				</menupopup>
+			</menulist>
+		</hbox>
+		<spacer flex="1" height="50" />
+	</prefpane>
+
+	<prefpane id="advancedPane" label="&archivefb.prefs.advanced;" flex="1">
+		<preferences>
+			<preference id="archivefb.showDetailOnDrop"   name="archivefb.showDetailOnDrop"   type="bool" />
+			<preference id="archivefb.notifyOnComplete"   name="archivefb.notifyOnComplete"   type="bool" />
+		</preferences>
+		<checkbox preference="archivefb.showDetailOnDrop" label="&archivefb.prefs.showDetailOnDrop;" />
+		<checkbox preference="archivefb.notifyOnComplete" label="&archivefb.prefs.notifyOnComplete;" />
+	</prefpane>
+
+	<script type="application/x-javascript" src="chrome://archivefb/content/common.js" />
+	<script type="application/x-javascript" src="chrome://archivefb/content/prefs.js" />
+	<script type="application/x-javascript" src="chrome://archivefb/content/highlighter.js" />
+	<script type="application/x-javascript" src="chrome://archivefb/content/mbService.js" />
+
+</prefwindow>

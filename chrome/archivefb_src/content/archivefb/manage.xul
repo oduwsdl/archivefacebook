@@ -1,0 +1,138 @@
+<?xml version="1.0" ?>
+
+<?xml-stylesheet href="chrome://global/skin/" type="text/css" ?>
+<?xml-stylesheet href="chrome://archivefb/skin/archivefb.css" type="text/css" ?>
+
+<?xul-overlay href="chrome://archivefb/content/tree.xul"?>
+
+<!DOCTYPE window [
+	<!ENTITY % mainDTD SYSTEM "chrome://archivefb/locale/archivefb.dtd" >
+	%mainDTD;
+	<!ENTITY % propDTD SYSTEM "chrome://archivefb/locale/property.dtd" >
+	%propDTD;
+	<!ENTITY % treeDTD SYSTEM "chrome://archivefb/locale/tree.dtd" >
+	%treeDTD;
+]>
+
+<window id="archivefbManageWindow"
+        title="&archivefb.tools.manage; - archivefb"
+        xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
+        xmlns:ARCHIVEFB="http://amb.vis.ne.jp/mozilla/archivefb-rdf#"
+        width="720" height="540" persist="width height screenX screenY"
+        onload="archivefbManageUI.init(); archivefbMainUI.init();"
+        onunload="archivefbMainUI.done();"
+        windowtype="archivefb">
+
+	<script type="application/x-javascript" src="chrome://archivefb/content/manage.js" />
+	<script type="application/x-javascript" src="chrome://archivefb/content/scrapnote.js" />
+
+	<keyset>
+		<key key="a" modifiers="accel" oncommand="archivefbTreeUI.TREE.focus();archivefbTreeUI.TREE.view.selection.selectAll();" />
+		<key key="w" modifiers="accel" oncommand="window.close();" />
+		<key keycode="VK_ESCAPE" oncommand="window.close();" />
+	</keyset>
+
+	<popupset id="archivefbPopupSet" />
+
+	<toolbox id="archivefbMainToolbox">
+		<toolbar id="archivefbSearchToolbar" />
+		<toolbar id="archivefbMainToolbar">
+			<toolbarbutton id="archivefbToolbarNewFolder" type="menu">
+				<menupopup>
+					<menuitem class="menuitem-iconic archivefb-create" label="&archivefb.new.folder;..." oncommand="archivefbMainUI.createFolder();" />
+					<menuitem class="menuitem-iconic archivefb-create" label="&archivefb.new.separator;" oncommand="archivefbMainUI.createSeparator();" />
+					<menuitem class="menuitem-iconic archivefb-create" label="&archivefb.new.note;"      oncommand="archivefbMainUI.createNote();" />
+				</menupopup>
+			</toolbarbutton>
+			<toolbarbutton id="archivefbToolbarToggle"   tooltiptext="&archivefb.toggle.all;" oncommand="archivefbTreeUI.toggleAllFolders();" />
+			<toolbarbutton id="mbToolbarButton" />
+			<toolbarseparator /><toolbarbutton id="archivefbToolbarMove"   label="&archivefb.move;..." oncommand="archivefbTreeUI.send();" />
+			<toolbarseparator /><toolbarbutton id="archivefbToolbarRemove" label="&archivefb.remove;"  oncommand="archivefbTreeUI.remove();" />
+			<spacer flex="1" />
+			<toolbarseparator /><toolbarbutton id="archivefbToolbarCombine" label="&archivefb.tools.combine;" type="checkbox" autoCheck="false" group="module" moduleurl="chrome://archivefb/content/combine.xul" oncommand="archivefbManageUI.toggleRightPane(this);" />
+			<toolbarseparator /><toolbarbutton id="archivefbToolbarTrade"   label="&archivefb.tools.trade;"   type="checkbox" autoCheck="false" group="module" moduleurl="chrome://archivefb/content/trade.xul"   oncommand="archivefbManageUI.toggleRightPane(this);" />
+		</toolbar>
+	</toolbox>
+
+	<hbox flex="1">
+		<vbox id="archivefbLeftPane" flex="2" persist="width">
+			<vbox id="archivefbTreeOuter" flex="2" persist="height">
+				<tree id="archivefbTree"
+				      onclick="archivefbTreeUI.onClick(event, 1);"
+				      ondblclick="archivefbTreeUI.onDblClick(event);"
+				      onkeypress="archivefbTreeUI.onKeyPress(event);"
+				      ondragstart="archivefbTreeUI.onDragStart(event);"
+				      ondragover="archivefbTreeUI.onDragOver(event);"
+				      contextmenu="archivefbPopup"
+				      hidecolumnpicker="false"
+				      enableColumnDrag="true"
+				      seltype="multiple"
+				      class="plain" flex="1">
+					<treecols id="archivefbTreeCols">
+						<treecol id="archivefbTreeColTitle" flex="6" label="&archivefb.prop.title;" hideheader="false"
+							class="sortDirectionIndicator" sortActive="true" sort="rdf:http://amb.vis.ne.jp/mozilla/archivefb-rdf#title"
+							persist="width hidden ordinal" />
+						<splitter class="tree-splitter" />
+						<treecol id="archivefbTreeColSource" flex="2" label="URL"
+							class="sortDirectionIndicator" sortActive="true" sort="rdf:http://amb.vis.ne.jp/mozilla/archivefb-rdf#source"
+							persist="width hidden ordinal" />
+						<splitter class="tree-splitter" />
+						<treecol id="archivefbTreeColType" flex="1" label="&archivefb.prop.type;"
+							class="sortDirectionIndicator" sortActive="true" sort="rdf:http://amb.vis.ne.jp/mozilla/archivefb-rdf#type"
+							persist="width hidden ordinal" />
+						<splitter class="tree-splitter" />
+						<treecol id="archivefbTreeColIcon" flex="1" label="&archivefb.prop.icon;"
+							class="sortDirectionIndicator" sortActive="true" sort="rdf:http://amb.vis.ne.jp/mozilla/archivefb-rdf#icon"
+							hidden="true"
+							persist="width hidden ordinal" />
+						<splitter class="tree-splitter" />
+						<treecol id="archivefbTreeColChars" flex="1" label="&archivefb.prop.encode;"
+							class="sortDirectionIndicator" sortActive="true" sort="rdf:http://amb.vis.ne.jp/mozilla/archivefb-rdf#chars"
+							hidden="true"
+							persist="width hidden ordinal" />
+						<splitter class="tree-splitter" />
+						<treecol id="archivefbTreeColComment" flex="2" label="&archivefb.prop.comment;"
+							class="sortDirectionIndicator" sortActive="true" sort="rdf:http://amb.vis.ne.jp/mozilla/archivefb-rdf#comment"
+							hidden="true"
+							persist="width hidden ordinal" />
+						<splitter class="tree-splitter" />
+						<treecol id="archivefbTreeColID" flex="1" label="&archivefb.prop.id.date;"
+							class="sortDirectionIndicator" sortActive="true" sort="rdf:http://amb.vis.ne.jp/mozilla/archivefb-rdf#id"
+							hidden="true"
+							persist="width hidden ordinal" />
+					</treecols>
+					<template>
+						<rule id="archivefbTreeRule">
+							<treechildren flex="1">
+								<treeitem uri="rdf:*">
+									<treerow>
+										<treecell id="archivefbTreeItem"
+										          label="rdf:http://amb.vis.ne.jp/mozilla/archivefb-rdf#title"
+										          src="rdf:http://amb.vis.ne.jp/mozilla/archivefb-rdf#icon"
+										          properties="Name title rdf:http://amb.vis.ne.jp/mozilla/archivefb-rdf#type" />
+										<treecell label="rdf:http://amb.vis.ne.jp/mozilla/archivefb-rdf#source" />
+										<treecell label="rdf:http://amb.vis.ne.jp/mozilla/archivefb-rdf#type" />
+										<treecell label="rdf:http://amb.vis.ne.jp/mozilla/archivefb-rdf#icon" />
+										<treecell label="rdf:http://amb.vis.ne.jp/mozilla/archivefb-rdf#chars" />
+										<treecell label="rdf:http://amb.vis.ne.jp/mozilla/archivefb-rdf#comment" />
+										<treecell label="rdf:http://amb.vis.ne.jp/mozilla/archivefb-rdf#id" />
+									</treerow>
+								</treeitem>
+							</treechildren>
+						</rule>
+					</template>
+				</tree>
+			</vbox>
+		</vbox>
+		<splitter id="archivefbPaneSplitter" hidden="true" />
+		<browser id="archivefbRightPaneBrowser" type="content" onload="event.stopPropagation();" flex="5" hidden="true" persist="width" />
+	</hbox>
+
+	<statusbar id="status-bar" class="chromeclass-status">
+		<statusbarpanel id="statusbar-display" flex="1" />
+		<statusbarpanel id="statusbar-progresspanel" class="statusbarpanel-progress" collapsed="true">
+			<progressmeter id="archivefbManageProgress" mode="determined" value="0" width="160" />
+		</statusbarpanel>
+	</statusbar>
+
+</window>

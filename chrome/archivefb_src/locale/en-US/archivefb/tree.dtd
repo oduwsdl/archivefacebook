@@ -1,0 +1,32 @@
+<!ENTITY archivefb.open "Open">
+<!ENTITY archivefb.open.tab "Open in Tab">
+<!ENTITY archivefb.open.newtab "Open in New Tab">
+<!ENTITY archivefb.open.source "Open Source URL">
+<!ENTITY archivefb.tools "Tools">
+<!ENTITY archivefb.show.files "Show Files">
+<!ENTITY archivefb.move "Move">
+<!ENTITY archivefb.move.into "Move into Folder">
+<!ENTITY archivefb.renew "Capture Again">
+<!ENTITY archivefb.export "Export">
+<!ENTITY archivefb.remove "Delete">
+<!ENTITY archivefb.property "Properties">
+<!ENTITY archivefb.prop.title "Title">
+<!ENTITY archivefb.prop.comment "Comment">
+<!ENTITY archivefb.prop.id.date "ID (Time)">
+<!ENTITY archivefb.folder.combine "Combined View">
+<!ENTITY archivefb.folder.openall "Open All in Tabs">
+<!ENTITY archivefb.folder.manage "Manage Folder">
+<!ENTITY archivefb.new.folder "New Folder">
+<!ENTITY archivefb.new.separator "New Separator">
+<!ENTITY archivefb.new.note "New Note">
+<!ENTITY archivefb.sort.folder "Sort Folder">
+<!ENTITY archivefb.search "Search">
+<!ENTITY archivefb.search.fulltext "Full Text Search">
+<!ENTITY archivefb.search.all "All">
+<!ENTITY archivefb.search.re "Use RegExp">
+<!ENTITY archivefb.search.cs "Match Case">
+<!ENTITY archivefb.search.cache "Update Cache for Full Text Search">
+<!ENTITY archivefb.search.clear "Clear Form History">
+<!ENTITY archivefb.search.days "Filtering by Days">
+<!ENTITY mb.manage "Manage">
+<!ENTITY mb.profileFolder "Profile Folder">

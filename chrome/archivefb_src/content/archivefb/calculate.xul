@@ -1,0 +1,85 @@
+<?xml version="1.0" ?>
+
+<?xml-stylesheet href="chrome://global/skin/" type="text/css" ?>
+<?xml-stylesheet href="chrome://archivefb/skin/archivefb.css" type="text/css" ?>
+
+<!DOCTYPE window [
+<!ENTITY % mainDTD SYSTEM "chrome://archivefb/locale/archivefb.dtd" >
+%mainDTD;
+<!ENTITY % treeDTD SYSTEM "chrome://archivefb/locale/tree.dtd" >
+%treeDTD;
+<!ENTITY % propDTD SYSTEM "chrome://archivefb/locale/property.dtd" >
+%propDTD;
+<!ENTITY % calcDTD SYSTEM "chrome://archivefb/locale/calculate.dtd" >
+%calcDTD;
+]>
+
+<window id="archivefbCalcWindow"
+        title="&archivefb.tools.calculate; - ScrapBook"
+        xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
+        width="500" height="450"
+        persist="screenX screenY"
+        onload="setTimeout(function(){ archivefbCalcService.exec(); }, 0);"
+        windowtype="archivefb">
+
+	<script type="application/x-javascript" src="chrome://archivefb/content/common.js" />
+	<script type="application/x-javascript" src="chrome://archivefb/content/calculate.js" />
+	<script type="application/x-javascript" src="chrome://archivefb/content/property.js" />
+	<script type="application/x-javascript" src="chrome://archivefb/content/customTree.js" />
+	<script type="application/x-javascript" src="chrome://archivefb/content/archivefb.js" />
+
+	<stringbundle id="archivefbPropString" src="chrome://archivefb/locale/property.properties" />
+
+	<keyset>
+		<key keycode="VK_ESCAPE" oncommand="window.close();" />
+		<key keycode="VK_F5"     oncommand="window.location.reload();" />
+	</keyset>
+
+	<popupset>
+		<menupopup id="archivefbCalcPopup" onpopupshowing="archivefbCalcController.createPopupMenu();">
+			<menuitem label="&archivefb.open;"        oncommand="archivefbCalcController.open(false);" default="true" />
+			<menuitem label="&archivefb.open.newtab;" oncommand="archivefbCalcController.open(true);" />
+			<menuitem label="&archivefb.show.files;"  oncommand="archivefbCalcController.forward('L');" />
+			<menuseparator /><menuitem id="archivefbPopupRemove"   class="menuitem-iconic" label="&archivefb.remove;"   oncommand="archivefbCalcController.remove();" diarchivefbabled="true" />
+			<menuseparator /><menuitem id="archivefbPopupProperty" class="menuitem-iconic" label="&archivefb.property;" oncommand="archivefbCalcController.forward('P');" />
+		</menupopup>
+	</popupset>
+
+	<grid style="margin:10px 10px 0px 10px;">
+		<columns>
+			<column />
+			<column flex="1" />
+		</columns>
+		<rows>
+			<row align="center">
+				<label value="&archivefb.calc.total.size;:" />
+				<textbox id="archivefbCalcTotalSize" readonly="true" />
+			</row>
+			<row align="center">
+				<label value="&archivefb.calc.diagnosis;:" />
+				<textbox id="archivefbCalcDiagnosis" readonly="true" />
+			</row>
+		</rows>
+	</grid>
+
+	<tree id="archivefbTree"
+	      context="archivefbCalcPopup"
+	      seltype="single"
+	      ondblclick="archivefbCalcController.onDblClick(event);"
+	      onkeypress="if ( event.keyCode == 46 ) archivefbCalcController.remove();"
+	      style="margin:12px;"
+	      flex="1">
+		<treecols>
+			<treecol id="archivefbTreeColTitle" label="&archivefb.prop.title;"     flex="7" sortIndex="2" primary="true" />
+			<treecol id="archivefbTreeColSize"  label="&archivefb.prop.size;"      flex="2" sortIndex="4" sortDirection="descending" />
+			<treecol id="archivefbTreeColState" label="&archivefb.calc.diagnosis;" flex="1" sortIndex="6" style="max-width:120px;" />
+		</treecols>
+		<treechildren />
+	</tree>
+
+	<statuarchivefbar style="border-top: 1px solid ThreeDShadow;" align="center">
+		<statuarchivefbarpanel id="archivefbCalcMessage" class="plain" flex="1" />
+		<progressmeter id="archivefbCalcProgress" mode="determined" value="0" width="160" />
+	</statuarchivefbar>
+
+</window>
